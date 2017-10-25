@@ -75,6 +75,8 @@ public class CharacterMovement2D : MonoBehaviour {
         }
     }
 
+    private Rigidbody2D body;
+
     // Use this for initialization
     void Start ()
     {
@@ -87,6 +89,7 @@ public class CharacterMovement2D : MonoBehaviour {
             GetComponent<Rigidbody2D>().gravityScale = 1;
         }
 
+        body = GetComponent<Rigidbody2D>();
 
     }
 
@@ -98,17 +101,18 @@ public class CharacterMovement2D : MonoBehaviour {
         currentSpeed += direction * moveAcceleration * Time.deltaTime;
 
         if (!running &&
-            currentSpeed.magnitude > maxWalkSpeed)
+            body.velocity.magnitude > maxWalkSpeed)
         {
-            currentSpeed = currentSpeed.normalized * maxWalkSpeed;
+            body.velocity = body.velocity.normalized * maxWalkSpeed;
         }
         else if (running &&
-            currentSpeed.magnitude > maxRunSpeed)
+            body.velocity.magnitude > maxRunSpeed)
         {
-            currentSpeed = currentSpeed.normalized * maxRunSpeed;
+            body.velocity = body.velocity.normalized * maxRunSpeed;
         }
 
-        transform.position = new Vector3(transform.position.x + currentSpeed.x, transform.position.y + currentSpeed.y, transform.position.z);
+        //transform.position = new Vector3(transform.position.x + currentSpeed.x, transform.position.y + currentSpeed.y, transform.position.z);
+        body.AddForce(currentSpeed);
 
         currentSpeed *= (1 - dampening);
 
