@@ -42,15 +42,22 @@ public class CharacterMovement2D : MonoBehaviour {
     public void SetJumpForce( float _jumpForce )                { jumpForce = _jumpForce; }
 
     [SerializeField]
-    private Vector2 gravity;
-    public Vector2 GetGravity()                                    { return gravity; }
-    public void SetGravity(Vector2 _gravity)                    { gravity = _gravity; }
-
-    [SerializeField]
     [Range(0, 1)]
     private float dampening;
     public float GetDampening()                                  { return dampening; }
     public void SetDampening(float _dampening)                  { dampening = _dampening; }
+
+    [SerializeField]
+    [Range(0, 1)]
+    private float friction;
+    public float GetFriction() { return friction; }
+    public void SetFriction(float _friction) { friction = _friction; }
+
+    [SerializeField]
+    private float gravity;
+    public float GetGravity() { return gravity; }
+    public void SetGravity(float _gravity) { gravity = _gravity; }
+
 
     public enum GameType2D
     {
@@ -71,7 +78,7 @@ public class CharacterMovement2D : MonoBehaviour {
         }
         else if (gameType == GameType2D.SIDE_SCROLLER)
         {
-            GetComponent<Rigidbody2D>().gravityScale = 1;
+            GetComponent<Rigidbody2D>().gravityScale = gravity;
         }
     }
 
@@ -86,7 +93,7 @@ public class CharacterMovement2D : MonoBehaviour {
         }
         else if (gameType == GameType2D.SIDE_SCROLLER)
         {
-            GetComponent<Rigidbody2D>().gravityScale = 1;
+            GetComponent<Rigidbody2D>().gravityScale = gravity;
         }
 
         body = GetComponent<Rigidbody2D>();
@@ -100,21 +107,62 @@ public class CharacterMovement2D : MonoBehaviour {
 
         currentSpeed += direction * moveAcceleration * Time.deltaTime;
 
-        if (!running &&
+        if(gameType == GameType2D.TOP_DOWN_VIEW)
+        {
+            if (!running &&
             body.velocity.magnitude > maxWalkSpeed)
-        {
-            body.velocity = body.velocity.normalized * maxWalkSpeed;
+            {
+                body.velocity = body.velocity.normalized * maxWalkSpeed;
+            }
+            else if (running &&
+                body.velocity.magnitude > maxRunSpeed)
+            {
+                body.velocity = body.velocity.normalized * maxRunSpeed;
+            }
+
+            currentSpeed *= (1 - dampening);
+
         }
-        else if (running &&
-            body.velocity.magnitude > maxRunSpeed)
+
+        if (gameType == GameType2D.SIDE_SCROLLER)
         {
-            body.velocity = body.velocity.normalized * maxRunSpeed;
+            if (!running &&
+            body.velocity.x > maxWalkSpeed)
+            {
+                body.velocity = new Vector2(maxWalkSpeed, body.velocity.y);
+            }
+
+            if (!running &&
+            body.velocity.x < maxWalkSpeed * -1)
+            {
+                body.velocity = new Vector2(maxWalkSpeed * -1, body.velocity.y);
+            }
+
+            else if (running &&
+                body.velocity.x > maxRunSpeed)
+            {
+                body.velocity = new Vector2(maxRunSpeed, body.velocity.y);
+            }
+
+            else if (running &&
+                body.velocity.x < maxRunSpeed * -1)
+            {
+                body.velocity = new Vector2(maxRunSpeed * -1, body.velocity.y);
+            }
+
+            if(grounded && direction == Vector2.zero)
+            {
+                body.velocity = new Vector2(body.velocity.x * (1 - friction), body.velocity.y);
+            }
+
+            currentSpeed.x *= (1 - dampening);
+
         }
+
+        
 
         //transform.position = new Vector3(transform.position.x + currentSpeed.x, transform.position.y + currentSpeed.y, transform.position.z);
         body.AddForce(currentSpeed);
-
-        currentSpeed *= (1 - dampening);
 
     }
 
