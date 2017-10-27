@@ -13,6 +13,15 @@ public class ProjectileManager2D : MonoBehaviour {
     private float timeToFire = 0;
     private Transform firePoint;
 
+    public enum FireType2D
+    {
+        BURST,
+        SINGLE,
+        SHOTGUN,
+    }
+
+    public FireType2D fireType;
+
 	// Use this for initialization
 	void Awake () {
         firePoint = transform.Find("FirePoint");
@@ -23,26 +32,59 @@ public class ProjectileManager2D : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-        if (fireRate == 0)
+	void Update ()
+    {
+        //if (fireRate == 0)
+        //{
+        //    if (Input.GetButtonDown("Fire1"))
+        //    {
+        //        ShootMulti();
+        //    }
+        //    if (Input.GetKeyDown(KeyCode.UpArrow))
+        //    {
+        //        ShootMulti();
+        //    }
+        //}
+        //else
+        //{
+        //    if (Input.GetButton ("Fire1") && Time.time > timeToFire)
+        //    {
+        //        timeToFire = Time.time + 1 / fireRate;
+        //        ShootOne();
+        //    }
+        //}
+
+        if (Input.GetButton("Fire1") && Time.time > timeToFire)
         {
-            if (Input.GetButtonDown("Fire1"))
+            timeToFire = Time.time + 1 / fireRate;
+            switch (fireType)
             {
-                ShootMulti();
+                case FireType2D.SINGLE:
+                    {
+                        ShootOne();
+                        break;
+                    }
+                case FireType2D.SHOTGUN:
+                    {
+                        ShootMulti();
+                        break;
+                    }
+                case FireType2D.BURST:
+                    {
+
+                        break;
+                    }
+                default:
+                    {
+
+                        break;
+                    }
             }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                ShootMulti();
-            }
+
         }
-        else
-        {
-            if (Input.GetButton ("Fire1") && Time.time > timeToFire)
-            {
-                timeToFire = Time.time + 1 / fireRate;
-                ShootOne();
-            }
-        }
+
+        
+
 	}
 
     void ShootOne()
@@ -71,9 +113,12 @@ public class ProjectileManager2D : MonoBehaviour {
 
     void setRotation()
     {
-        Vector3 Di = Camera.main.ScreenToWorldPoint(Input.mousePosition) - firePoint.position;
-        Di.Normalize();
-        rot = Mathf.Atan2(Di.y, Di.x) * Mathf.Rad2Deg; //Find the an
+        //Vector3 Di = Camera.main.ScreenToWorldPoint(Input.mousePosition) - firePoint.position;
+        //Di.Normalize();
+        //rot = Mathf.Atan2(Di.y, Di.x) * Mathf.Rad2Deg; //Find the angle
+
+        //rot = Input.GetAxis("Vertical");
+
     }
 }
 

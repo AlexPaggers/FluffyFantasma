@@ -59,13 +59,11 @@ public class PlayerMovement2D : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col)
     {
         movement2D.SetGrounded(true);
-        Debug.Log("aaaa");
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
         movement2D.SetGrounded(false);
-        Debug.Log("bbbb");
     }
 
 }
