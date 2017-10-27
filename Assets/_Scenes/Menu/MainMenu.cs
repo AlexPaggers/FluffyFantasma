@@ -16,43 +16,37 @@ public class MainMenu : MonoBehaviour {
     Text shadow;
     [SerializeField]
     Text TEST;
-
+    [SerializeField]
+    Text TESTSHADOW;
 
     bool hiding;
 
-    [SerializeField]
-    float currentHighscore;
-
+    //this will be in gamedata
     int credits;
+
 	// Use this for initialization
 	void Start () {
         text.text = "Insert coin to start";
         shadow.text = "Insert coin to start";
-        readHighscore();
+        TEST.text = "Highscore: " + readHighscore();
+        TESTSHADOW.text = "Highscore: " + readHighscore();
         credits = 0;
         hiding = true;
 	}
 	
 
-    void readHighscore()
+    string readHighscore()
     {
-
         string path = "Assets/Highscores.txt";
-
-        //Write some text to the test.txt file
-        /*StreamWriter writer = new StreamWriter(path, true);
-        writer.WriteLine("Highscore: 3700");
-        writer.Close();*/
 
         //Re-import the file to update the reference in the editor
         AssetDatabase.ImportAsset(path);
 
         //Read from the file
         StreamReader reader = new StreamReader(path, true);
-        TEST.text = reader.ReadToEnd();
-
-
+        return reader.ReadToEnd();
     }
+
 	// Update is called once per frame
 	void Update ()
     {
@@ -90,8 +84,8 @@ public class MainMenu : MonoBehaviour {
     void creditInserted()
     {
         credits++;
-        text.text = "" + credits + " credit(s). Push start to play";
-        shadow.text = "" + credits + " credit(s). Push start to play";
+        text.text = "" + credits + " credit(s) push start to play";
+        shadow.text = "" + credits + " credit(s) push start to play";
     }
 
 }
