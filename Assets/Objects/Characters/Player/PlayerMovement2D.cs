@@ -4,16 +4,49 @@ using UnityEngine;
 
 public class PlayerMovement2D : MonoBehaviour {
 
+    private SpriteRenderer sprite;
+
     private CharacterMovement2D movement2D;
+
+    [SerializeField]
+    private bool blinking;
+    private float timeToFire = 0;
+    private float timeToBlink = 0;
+
+    [SerializeField]
+    private float blinkTime, blinkSpeed;
 
 	// Use this for initialization
 	void Start ()
     {
         movement2D = GetComponent<CharacterMovement2D>();
+        sprite = GetComponent<SpriteRenderer>();
 	}
 	
     void Update()
     {
+        if (blinking)
+        {
+            if (Time.time >= timeToBlink)
+            {
+                timeToBlink = Time.time + blinkSpeed;
+                if (sprite.isVisible == true)
+                {
+                    sprite.enabled = false;
+                }
+                else sprite.enabled = true;
+            }
+
+            if (Time.time >= timeToFire)
+            {
+                blinking = false;
+                sprite.enabled = true;
+            }
+
+           
+
+        }
+
         if (Input.GetButtonDown("Jump") &&
             movement2D.GetGameType() == CharacterMovement2D.GameType2D.SIDE_SCROLLER)
         {
@@ -64,6 +97,17 @@ public class PlayerMovement2D : MonoBehaviour {
     void OnTriggerExit2D(Collider2D col)
     {
         movement2D.SetGrounded(false);
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.tag == "Damaging" &&
+            !blinking)
+        {
+            blinking = true;
+            timeToFire = Time.time + blinkTime;
+            Debug.Log("ouch");
+        }
     }
 
 }
