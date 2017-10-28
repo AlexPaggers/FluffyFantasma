@@ -2,28 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum FireType2D
+{
+    BURST,
+    SINGLE,
+    SHOTGUN,
+}
 public class ProjectileManager2D : MonoBehaviour {
 
-    float rot;
     public float fireRate = 0;
     public float damage = 10;
     public LayerMask whatToHit;
 
     public Transform bulletPrefab;
     private float timeToFire = 0;
+    private float lastRot;
     private Transform firePoint;
 
-    public enum FireType2D
-    {
-        BURST,
-        SINGLE,
-        SHOTGUN,
-    }
-
     public FireType2D fireType;
+    private FireAngle2D myAngle;
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake () {
         firePoint = transform.Find("FirePoint");
         if (firePoint == null)
         {
@@ -34,27 +34,8 @@ public class ProjectileManager2D : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        //if (fireRate == 0)
-        //{
-        //    if (Input.GetButtonDown("Fire1"))
-        //    {
-        //        ShootMulti();
-        //    }
-        //    if (Input.GetKeyDown(KeyCode.UpArrow))
-        //    {
-        //        ShootMulti();
-        //    }
-        //}
-        //else
-        //{
-        //    if (Input.GetButton ("Fire1") && Time.time > timeToFire)
-        //    {
-        //        timeToFire = Time.time + 1 / fireRate;
-        //        ShootOne();
-        //    }
-        //}
 
-        if (Input.GetButton("Fire1") && Time.time > timeToFire)
+        if (Input.GetButton("XButton") && Time.time > timeToFire)
         {
             timeToFire = Time.time + 1 / fireRate;
             switch (fireType)
@@ -83,27 +64,75 @@ public class ProjectileManager2D : MonoBehaviour {
 
         }
 
-        
-
 	}
 
     void ShootOne()
     {
-        setRotation();
         Effect();
     }
 
     void ShootMulti()
     {
-        setRotation();
-        firePoint.rotation = Quaternion.Euler(0.0f, 0.0f, rot);
-        Effect();
+        myAngle = GunController2D.fireAngle;
+        if (myAngle == FireAngle2D.UP)
+        {
+            setRotation(95f);
+            Effect();
+            setRotation(85f);
+            Effect();
+            setRotation(90f);
+            Effect();
+        }
 
-        firePoint.rotation = Quaternion.Euler(0.0f, 0.0f, rot + 4);
-        Effect();
+        else if (myAngle == FireAngle2D.UP_RIGHT) //Aiming UP RIGHT
+        {
+            setRotation(50f);
+            Effect();
+            setRotation(40f);
+            Effect();
+            setRotation(45f);
+            Effect();
+        }
 
-        firePoint.rotation = Quaternion.Euler(0.0f, 0.0f, rot - 4);
-        Effect();
+        else if (myAngle == FireAngle2D.UP_LEFT) //Aimin UP LEFT
+        {
+            setRotation(140f);
+            Effect();
+            setRotation(130f);
+            Effect();
+            setRotation(135f);
+            Effect();
+        }
+
+        else if (myAngle == FireAngle2D.RIGHT) //Aiming RIGHT
+        {
+            setRotation(5f);
+            Effect();
+            setRotation(-5f);
+            Effect();
+            setRotation(0f);
+            Effect();
+        }
+
+        else if (myAngle == FireAngle2D.LEFT) //Aiming LEFT
+        {
+            setRotation(185f);
+            Effect();
+            setRotation(175f);
+            Effect();
+            setRotation(180f);
+            Effect();
+        }
+        else
+        {
+            setRotation(lastRot + 5f);
+            Effect();
+            setRotation(lastRot - 5f);
+            Effect();
+            setRotation(lastRot);
+            Effect();
+        }
+        Debug.Log(myAngle);
     }
 
     void Effect()
@@ -111,49 +140,9 @@ public class ProjectileManager2D : MonoBehaviour {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
-    void setRotation()
+    void setRotation(float rot)
     {
-        //Vector3 Di = Camera.main.ScreenToWorldPoint(Input.mousePosition) - firePoint.position;
-        //Di.Normalize();
-        //rot = Mathf.Atan2(Di.y, Di.x) * Mathf.Rad2Deg; //Find the angle
-
-        //rot = Input.GetAxis("Vertical");
-
+        transform.rotation = Quaternion.Euler(0f, 0f, rot);
+        lastRot = rot;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-//Vector2 mousePosition2 = new Vector2(mousePosition.x - 0.2f, mousePosition.y - 0.2f);
-//Vector2 mousePosition3 = new Vector2(mousePosition.x + 0.1f, mousePosition.y + 0.1f);
-//Vector2 mousePosition4 = new Vector2(mousePosition.x - 0.1f, mousePosition.y - 0.1f);
-
-//Vector2 firePointPos = new Vector2(firePoint.position.x, firePoint.position.y);
-//RaycastHit2D hit = Physics2D.Raycast(firePointPos, mousePosition - firePointPos, 100, whatToHit);
-
-//Debug.DrawLine(firePointPos, (mousePosition - firePointPos) * 100, Color.green);
-//Debug.DrawLine(firePointPos, (mousePosition1 - firePointPos) * 100, Color.blue);
-//Debug.DrawLine(firePointPos, (mousePosition2 - firePointPos) * 100, Color.yellow);
-//Debug.DrawLine(firePointPos, (mousePosition3 - firePointPos) * 100, Color.white);
-//Debug.DrawLine(firePointPos, (mousePosition4 - firePointPos) * 100, Color.cyan);
-
-//if (hit.collider != null)
-//{
-//    Debug.DrawLine(firePointPos, hit.point, Color.red); 
-//}
