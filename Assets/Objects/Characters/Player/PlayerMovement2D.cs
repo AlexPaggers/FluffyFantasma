@@ -91,12 +91,16 @@ public class PlayerMovement2D : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if(col.gameObject.tag != "Bullet"
+            && col.gameObject.tag != "Damaging")
         movement2D.SetGrounded(true);
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        movement2D.SetGrounded(false);
+        if (col.gameObject.tag != "Bullet"
+            && col.gameObject.tag != "Damaging")
+            movement2D.SetGrounded(false);
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -106,7 +110,7 @@ public class PlayerMovement2D : MonoBehaviour {
         {
             blinking = true;
             timeToFire = Time.time + blinkTime;
-            Debug.Log("ouch");
+            //Debug.Log("ouch");
         }
     }
 

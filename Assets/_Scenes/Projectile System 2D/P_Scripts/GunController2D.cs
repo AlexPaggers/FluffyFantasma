@@ -23,35 +23,35 @@ public class GunController2D : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 90f);
             fireAngle = FireAngle2D.UP;
-            Debug.Log("UP");
+            //Debug.Log("UP");
         }
 
         else if (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Horizontal") > 0) //Aiming UP RIGHT
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 45f);
             fireAngle = FireAngle2D.UP_RIGHT;
-            Debug.Log("U_RIGHT");
+            //Debug.Log("U_RIGHT");
         }
 
         else if (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Horizontal") < 0)  //Aimin UP LEFT
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 135f);
             fireAngle = FireAngle2D.UP_LEFT;
-            Debug.Log("U_LEFT");
+            //Debug.Log("U_LEFT");
         }
 
         else if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") > 0) //Aiming RIGHT
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             fireAngle = FireAngle2D.RIGHT;
-            Debug.Log("RIGHT");
+            //Debug.Log("RIGHT");
         }
 
         else if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") < 0) //Aiming LEFT
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 180f);
             fireAngle = FireAngle2D.LEFT;
-            Debug.Log("LEFT");
+            //Debug.Log("LEFT");
         }
     }
 

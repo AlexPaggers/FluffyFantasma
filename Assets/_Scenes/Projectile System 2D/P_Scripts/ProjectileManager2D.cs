@@ -12,7 +12,6 @@ public class ProjectileManager2D : MonoBehaviour {
 
     public float fireRate = 0;
     public float damage = 10;
-    public LayerMask whatToHit;
 
     public Transform bulletPrefab;
     private float timeToFire = 0;
@@ -132,7 +131,7 @@ public class ProjectileManager2D : MonoBehaviour {
             setRotation(lastRot);
             Effect();
         }
-        Debug.Log(myAngle);
+        //Debug.Log(myAngle);
     }
 
     void Effect()
