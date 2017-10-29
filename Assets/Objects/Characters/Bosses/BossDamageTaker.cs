@@ -39,7 +39,6 @@ public class BossDamageTaker : MonoBehaviour {
                 blinking = false;
                 sprite.color = Color.white;
             }
-
         }
     }
 

@@ -16,6 +16,7 @@ public class PlayerMovement2D : MonoBehaviour {
     [SerializeField]
     private float blinkTime, blinkSpeed;
 
+
 	// Use this for initialization
 	void Start ()
     {
@@ -110,7 +111,8 @@ public class PlayerMovement2D : MonoBehaviour {
         {
             blinking = true;
             timeToFire = Time.time + blinkTime;
-            //Debug.Log("ouch");
+            PlayerData.inflictDamage();
+            //Debug.Log("ouch"); 
         }
     }
 
