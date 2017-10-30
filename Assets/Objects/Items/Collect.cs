@@ -11,6 +11,7 @@ public class Collect : MonoBehaviour {
 		if(other.gameObject.tag == "Player")
 		{
 			CollectedAudio();
+			CollectionEffect();
 			StartCoroutine(DestroyOnceEffectsHaveFinished());
 		}
 	}
@@ -21,6 +22,20 @@ public class Collect : MonoBehaviour {
 	//		source.Play();
 
 		//re-add when audio is found
+	}
+
+
+	private void CollectionEffect()
+	{
+		switch (tag) 
+		{
+		case "Life":
+		//	PlayerData.Lives++;
+			break;
+		case "Coin":
+		//	PlayerData.Score += 10;
+			break;
+		}
 	}
 
 
