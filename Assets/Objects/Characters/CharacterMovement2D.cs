@@ -17,7 +17,7 @@ public class CharacterMovement2D : MonoBehaviour {
 
     [SerializeField]
     private float maxRunSpeed;
-    public float GetMaxRunSpeed()                                { return maxRunSpeed; }
+    public float GetMaxRunSpeed()                               { return maxRunSpeed; }
     public void SetMaxRunSpeed(float _maxRunSpeed)              { maxRunSpeed = _maxRunSpeed; }
 
     [SerializeField]
@@ -28,7 +28,7 @@ public class CharacterMovement2D : MonoBehaviour {
     [SerializeField]
     //[Range(0, 1)]
     private float moveAcceleration;
-    public float GetMoveAcceleration()                           { return moveAcceleration; }
+    public float GetMoveAcceleration()                          { return moveAcceleration; }
     public void SetMoveAcceleration(float _moveAcceleration)    { moveAcceleration = _moveAcceleration; }
 
     [SerializeField]

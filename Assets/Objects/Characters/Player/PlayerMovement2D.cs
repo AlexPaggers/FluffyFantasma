@@ -90,18 +90,26 @@ public class PlayerMovement2D : MonoBehaviour {
         }
 	}
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
         if(col.gameObject.tag != "Bullet"
-            && col.gameObject.tag != "Damaging")
-        movement2D.SetGrounded(true);
+            && col.gameObject.tag != "Damaging" 
+            && col.gameObject.tag != "Room")
+        {
+            print("Object: " + col.gameObject.name);
+            movement2D.SetGrounded(true);
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.tag != "Bullet"
-            && col.gameObject.tag != "Damaging")
+        if(col.gameObject.tag != "Bullet"
+            && col.gameObject.tag != "Damaging"
+            && col.gameObject.tag != "Room")            
+        {
+            print("Trigger Exit");
             movement2D.SetGrounded(false);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)

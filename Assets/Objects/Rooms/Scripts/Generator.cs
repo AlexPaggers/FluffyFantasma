@@ -110,10 +110,11 @@ public class Generator : MonoBehaviour
             var currentRoom  = preInitActiveRooms[i];
 
             print("current room: " + currentRoom);
-
+            
             if(i == 0)
             {
                 currentRoom.transform.position = new Vector2(0f, 0f);
+               // currentRoom.SetActive(true);
                 AddInitialisedRoom(currentRoom);
                 continue;
             }
@@ -124,6 +125,7 @@ public class Generator : MonoBehaviour
             var offsetX = previousRoom.transform.position.x + halfPreviousRoomSize + halfCurrentRoomSize;
 
             currentRoom.transform.position = new Vector2(offsetX, 0f);
+            //currentRoom.SetActive(false);
             AddInitialisedRoom(currentRoom);
         }
     }

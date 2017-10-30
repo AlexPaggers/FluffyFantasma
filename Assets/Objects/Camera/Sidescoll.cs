@@ -19,15 +19,19 @@ public class Sidescoll : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void LateUpdate () 
 	{
 
 		//set whether in a boss room or not based on gamedata :)
 
-		if (!bossRoom) {
-			if (target.transform.position.x > current.position.x + adjust) {
+		if (!bossRoom)
+        {
+			if (target.transform.position.x > current.position.x + adjust) 
+            {
+                var newPosition = Vector3.Lerp(current.position, target.transform.position, speed * Time.deltaTime);
+                current.position = new Vector3(newPosition.x, current.position.y, current.position.z);
 				//move towards to the right
-				current.position += current.right * speed * Time.deltaTime;
+				//current.position += current.right * speed * Time.deltaTime;
 			}
 		}
 	}
