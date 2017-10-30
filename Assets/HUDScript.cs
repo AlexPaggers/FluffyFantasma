@@ -6,8 +6,23 @@ using UnityEngine.UI;
 public class HUDScript : MonoBehaviour {
 
     public List<GameObject> liveSprites;
-    public Text timer;
-    public Text timershadow;
+
+    [SerializeField]
+    Sprite emptyHeart;
+    [SerializeField]
+    Sprite fullHeart;
+
+    //SpriteRenderer renderer;
+
+    [SerializeField]
+    Text timer;
+    [SerializeField]
+    Text timerShadow;
+
+    [SerializeField]
+    Text lives;
+    [SerializeField]
+    Text livesShadow;
 
     void Awake()
     {
@@ -23,19 +38,41 @@ public class HUDScript : MonoBehaviour {
 	void Update () {
         updateLives();
         updateTimer();
+        updateHealth();
     }
 
-    void updateLives()
+    void updateHealth()
     {
-        if (liveSprites[PlayerData.Health].gameObject)
-            Destroy(liveSprites[PlayerData.Health].gameObject);
+        int healthRemaining = 0;
+
+        for(int i = 0; i < PlayerData.MaxHealth; i++)
+        {
+            if(healthRemaining != PlayerData.Health)
+            {
+                //liveSprites[i].gameObject.SetActive(true);
+                liveSprites[i].gameObject.GetComponent<SpriteRenderer>().sprite = fullHeart;
+                healthRemaining++;
+            }
+            else
+            {
+                //liveSprites[i].gameObject.SetActive(false);
+                liveSprites[i].gameObject.GetComponent<SpriteRenderer>().sprite = emptyHeart;
+            }
+            
+        }
     }
 
     void updateTimer()
     {
-        string minutes = Mathf.Floor(PlayerData.Timer / 60).ToString("00");
-        string seconds = Mathf.Floor(PlayerData.Timer % 60).ToString("00");
+        string minutes = Mathf.Floor(PlayerData.TimeElapsed / 60).ToString("00");
+        string seconds = Mathf.Floor(PlayerData.TimeElapsed % 60).ToString("00");
         timer.text = string.Format("{0}:{1}", minutes, seconds);
-        timershadow.text = string.Format("{0}:{1}", minutes, seconds);
+        timerShadow.text = string.Format("{0}:{1}", minutes, seconds);
+    }
+
+    void updateLives()
+    {
+        lives.text = "x" + PlayerData.Lives;
+        livesShadow.text = "x" + PlayerData.Lives;
     }
 }

@@ -21,16 +21,12 @@ public class MainMenu : MonoBehaviour {
 
     bool hiding;
 
-    //this will be in gamedata
-    int credits;
-
 	// Use this for initialization
 	void Start () {
         text.text = "Insert coin to start";
         shadow.text = "Insert coin to start";
         TEST.text = "Highscore: " + readHighscore();
         TESTSHADOW.text = "Highscore: " + readHighscore();
-        credits = 0;
         hiding = true;
 	}
 	
@@ -76,16 +72,16 @@ public class MainMenu : MonoBehaviour {
 
         if(Input.GetKeyDown("joystick button 8") || Input.GetKeyDown("escape"))
         {
-            if (credits > 0)
+            if (GameData.CreditsRemaining > 0)
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
     void creditInserted()
     {
-        credits++;
-        text.text = "" + credits + " credit(s) push start to play";
-        shadow.text = "" + credits + " credit(s) push start to play";
+        GameData.insertCredit();
+        text.text = "" + GameData.CreditsRemaining + " credit(s) push start to play";
+        shadow.text = "" + GameData.CreditsRemaining + " credit(s) push start to play";
     }
 
 }

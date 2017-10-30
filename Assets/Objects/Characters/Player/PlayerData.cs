@@ -5,14 +5,18 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     static int health;
+    static int maxHealth;
     static int lives;
     static int score;
     static float timer;
+    static bool ghostForm;
 
     void Start()
     {
-        health = 3;
-        lives = 3;
+        ghostForm = false;
+        maxHealth = 3;
+        health = maxHealth;
+        lives = GameData.CreditsRemaining;
         score = 0;
         timer = 0;
     }
@@ -24,17 +28,25 @@ public class PlayerData : MonoBehaviour
 
     public static void inflictDamage()
     {
-        health--;
-        if(health == 0)
+        if (!ghostForm)
         {
-            health = 3;
-            lives--;
-            Debug.Log("No health left! Life lost!");
-            if (lives == 0)
+            health--;
+            if (health == 0)
             {
-                //GAMEOVER LOGIC
-                Debug.Log("No lives left! Game over!");
+                health = 3;
+                //DEATH LOGIC -- SOMETHING SIMILAR TO MARIO WOULD BE BANTS
+                lives--;
+                Debug.Log("No health left! Life lost!");
+                if (lives == 0)
+                {
+                    //GAMEOVER LOGIC
+                    Debug.Log("No lives left! Game over!");
+                }
             }
+        }
+        else
+        {
+            Debug.Log("Player is in ghost form and cannot be damaged");
         }
     }
 
@@ -47,6 +59,18 @@ public class PlayerData : MonoBehaviour
         set
         {
             value = health;
+        }
+    }
+
+    public static int MaxHealth
+    {
+        get
+        {
+            return maxHealth;
+        }
+        set
+        {
+            value = maxHealth;
         }
     }
 
@@ -66,15 +90,15 @@ public class PlayerData : MonoBehaviour
     {
         get
         {
-            return Score;
+            return score;
         }
         set
         {
-            value = Score;
+            value = score;
         }
     }
 
-    public static float Timer
+    public static float TimeElapsed
     {
         get
         {
