@@ -37,7 +37,7 @@ public class PlayerData : MonoBehaviour
                 //DEATH LOGIC -- SOMETHING SIMILAR TO MARIO WOULD BE BANTS
                 lives--;
                 Debug.Log("No health left! Life lost!");
-                if (lives == 0)
+                if (lives < 0)
                 {
                     //GAMEOVER LOGIC
                     Debug.Log("No lives left! Game over!");

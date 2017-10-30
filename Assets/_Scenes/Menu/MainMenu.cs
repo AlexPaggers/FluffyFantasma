@@ -65,15 +65,17 @@ public class MainMenu : MonoBehaviour {
             
         }
 
-        if(Input.GetKeyDown("insert"))
+        if(Input.GetKeyDown("joystick button 6") || Input.GetKeyDown("insert"))
         {
             creditInserted();
         }
 
-        if(Input.GetKeyDown("joystick button 8") || Input.GetKeyDown("escape"))
+        if(Input.GetKeyDown("joystick button 7") || Input.GetKeyDown("escape"))
         {
             if (GameData.CreditsRemaining > 0)
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            else
+                Debug.Log("No game credits.");
         }
     }
 
