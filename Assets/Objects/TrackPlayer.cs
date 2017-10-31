@@ -12,6 +12,7 @@ public class TrackPlayer : MonoBehaviour {
 	public float lookDist = 20; //enemies can look at the player (for shooting at them)
 	public float moveDist = 10; //objects can move to the player
 	public float stopDist = 0; //objects stop a certain distance from the player
+	public bool targetFound = false;
 	private Transform current;
 
 
@@ -24,14 +25,16 @@ public class TrackPlayer : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		float distance = Vector3.Distance(current.position, target.transform.position);
 		if (distance <= lookDist)
 		{
+			targetFound = true;
 			//rotate to look at the player
 			Vector3 dir = target.transform.position - transform.position;
-			float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
-			current.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+			float angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
+			current.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
 
 			//current.rotation = Quaternion.Slerp(current.rotation,
 			//	Quaternion.LookRotation(target.transform.position - current.position), rotSpeed*Time.deltaTime);
@@ -40,8 +43,11 @@ public class TrackPlayer : MonoBehaviour {
 				//move towards the player=
 				current.position += current.right * moveSpeed * Time.deltaTime;
 			}
+		} 
+		else 
+		{
+			targetFound = false;
 		}
-
 
 	}
 
