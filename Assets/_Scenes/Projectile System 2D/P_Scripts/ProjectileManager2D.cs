@@ -34,7 +34,7 @@ public class ProjectileManager2D : MonoBehaviour {
 	void Update ()
     {
 
-        if (Input.GetButton("XButton") && Time.time > timeToFire)
+		if ((Input.GetButton("XButton") || Input.GetKeyDown("insert")) && Time.time > timeToFire)
         {
             timeToFire = Time.time + 1 / fireRate;
             switch (fireType)

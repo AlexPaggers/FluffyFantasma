@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour {
 		int total = Random.Range (2, 12);
 		for (int i = 0; i < total; i++) 
 		{
-			Instantiate (coin);
+			//Instantiate (coin, this.transform, Quaternion.identity);
 
 		}
 

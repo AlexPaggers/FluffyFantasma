@@ -75,7 +75,11 @@ public class PlayerMovement2D : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
+<<<<<<< HEAD
         if (movement2D.GetGameType() == CharacterMovement2D.GameType2D.SIDE_SCROLLER)
+=======
+        if(movement2D.GetGameType() == CharacterMovement2D.GameType2D.SIDE_SCROLLER)
+>>>>>>> 47a8fdf8bd70dceb2f16d0e0dbfd8a4f1caa59b6
         {
             movement2D.move(new Vector2(Input.GetAxis("Horizontal"), 0));
 
@@ -89,12 +93,13 @@ public class PlayerMovement2D : MonoBehaviour {
         {
             movement2D.move(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
 
-            if (Input.GetButtonDown("R2"))
+            if(Input.GetButtonDown("R2"))
             {
                 movement2D.SetGameType(CharacterMovement2D.GameType2D.SIDE_SCROLLER);
             }
 
         }
+<<<<<<< HEAD
     }
 
     void OnTriggerStay2D(Collider2D col)
@@ -124,6 +129,9 @@ public class PlayerMovement2D : MonoBehaviour {
        //     print("Trigger Exit");
        //     movement2D.SetGrounded(false);
        // }
+=======
+        Grounded();
+>>>>>>> 47a8fdf8bd70dceb2f16d0e0dbfd8a4f1caa59b6
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -158,24 +166,3 @@ public class PlayerMovement2D : MonoBehaviour {
         }
     }
 }
-
-/*        // Raycast grounded test
-        float dist = 0f;
-        var rayOrigin = new Vector2(transform.position.x, transform.position.y - (sprite.bounds.size.y / 2f));
-        var hit = Physics2D.Raycast(rayOrigin, Vector2.down, 0.1f);
-        
-        Debug.DrawRay(rayOrigin, Vector2.down, Color.yellow);
-
-        // if its not the player update the distance.
-        if(hit.collider.gameObject.name != "Player")
-        {
-            dist = Vector2.Distance(rayOrigin, hit.point);
-        }
-        print("Distance to ground is " + dist);
-
-        // check the distance to see how far the player is from the floor.
-        if(dist > 0.1f)
-        {
-            // if they are a certain distnace away then they must be off the ground.
-            print("Player is off ground");
-        }*/
