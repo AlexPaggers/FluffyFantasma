@@ -75,11 +75,8 @@ public class PlayerMovement2D : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-<<<<<<< HEAD
         if (movement2D.GetGameType() == CharacterMovement2D.GameType2D.SIDE_SCROLLER)
-=======
         if(movement2D.GetGameType() == CharacterMovement2D.GameType2D.SIDE_SCROLLER)
->>>>>>> 47a8fdf8bd70dceb2f16d0e0dbfd8a4f1caa59b6
         {
             movement2D.move(new Vector2(Input.GetAxis("Horizontal"), 0));
 
@@ -99,7 +96,6 @@ public class PlayerMovement2D : MonoBehaviour {
             }
 
         }
-<<<<<<< HEAD
     }
 
     void OnTriggerStay2D(Collider2D col)
@@ -129,9 +125,7 @@ public class PlayerMovement2D : MonoBehaviour {
        //     print("Trigger Exit");
        //     movement2D.SetGrounded(false);
        // }
-=======
         Grounded();
->>>>>>> 47a8fdf8bd70dceb2f16d0e0dbfd8a4f1caa59b6
     }
 
     void OnCollisionEnter2D(Collision2D col)
