@@ -24,6 +24,7 @@ public class Projectile2D : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
+
         if (follow == true)
         {
             target = FindClosestEnemy();
@@ -53,6 +54,11 @@ public class Projectile2D : MonoBehaviour {
     public static bool followOn()
     {
         return follow = true;
+    }
+
+    public static bool followOff()
+    {
+        return follow = false;
     }
 
     public GameObject FindClosestEnemy()
