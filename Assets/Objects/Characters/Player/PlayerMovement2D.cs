@@ -72,20 +72,21 @@ public class PlayerMovement2D : MonoBehaviour {
         }
     }
 
-	// Update is called once per frame
-	void FixedUpdate ()
+    // Update is called once per frame
+    void FixedUpdate()
     {
+        if (movement2D.GetGameType() == CharacterMovement2D.GameType2D.SIDE_SCROLLER)
         if(movement2D.GetGameType() == CharacterMovement2D.GameType2D.SIDE_SCROLLER)
         {
             movement2D.move(new Vector2(Input.GetAxis("Horizontal"), 0));
 
-            if(Input.GetButtonDown("R2"))
+            if (Input.GetButtonDown("R2"))
             {
                 movement2D.SetGameType(CharacterMovement2D.GameType2D.TOP_DOWN_VIEW);
             }
         }
 
-        else if(movement2D.GetGameType() == CharacterMovement2D.GameType2D.TOP_DOWN_VIEW)
+        else if (movement2D.GetGameType() == CharacterMovement2D.GameType2D.TOP_DOWN_VIEW)
         {
             movement2D.move(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
 
@@ -95,6 +96,35 @@ public class PlayerMovement2D : MonoBehaviour {
             }
 
         }
+    }
+
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if(col.gameObject.tag != "Bullet"
+            && col.gameObject.tag != "Damaging" 
+            && col.gameObject.tag != "Room")
+        {
+          //  print("Object: " + col.gameObject.name);
+            movement2D.SetGrounded(true);
+        }
+        Grounded();
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.gameObject.tag != "Bullet"
+            && col.gameObject.tag != "Damaging"
+            && col.gameObject.tag != "Room")            
+        {
+            //print("Trigger Exit");
+            movement2D.SetGrounded(false);
+        }
+       // if(col.gameObject.tag != "Bullet"
+       //     && col.gameObject.tag != "Damaging")            
+       // {
+       //     print("Trigger Exit");
+       //     movement2D.SetGrounded(false);
+       // }
         Grounded();
     }
 
