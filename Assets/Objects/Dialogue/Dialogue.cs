@@ -6,8 +6,8 @@ using UnityEngine;
 public class Dialogue {
 
     public string entityName;
-    [TextArea(1, 3)]
-    public string[] entityDialogue;
+    [TextArea(1, 1)]
+    public string entityDialogue;
 
     public string EntityName
     {
@@ -17,7 +17,7 @@ public class Dialogue {
         }
     }
 
-    public string[] EntityDialogue
+    public string EntityDialogue
     {
         get
         {

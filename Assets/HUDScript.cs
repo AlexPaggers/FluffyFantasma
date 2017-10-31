@@ -8,6 +8,9 @@ public class HUDScript : MonoBehaviour {
     public List<GameObject> liveSprites;
 
     [SerializeField]
+    Image ghostBar;
+
+    [SerializeField]
     Sprite emptyHeart;
     [SerializeField]
     Sprite fullHeart;
@@ -39,6 +42,7 @@ public class HUDScript : MonoBehaviour {
         updateLives();
         updateTimer();
         updateHealth();
+        updateGhostBar();
     }
 
     void updateHealth()
@@ -74,5 +78,10 @@ public class HUDScript : MonoBehaviour {
     {
         lives.text = "x" + PlayerData.Lives;
         livesShadow.text = "x" + PlayerData.Lives;
+    }
+
+    void updateGhostBar()
+    {
+        ghostBar.transform.localScale = new Vector3(PlayerData.GhostMeter, ghostBar.transform.localScale.y, ghostBar.transform.localScale.z);
     }
 }

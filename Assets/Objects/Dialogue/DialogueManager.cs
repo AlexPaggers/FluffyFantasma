@@ -21,33 +21,14 @@ public class DialogueManager : MonoBehaviour
     public void sendDialogue(Dialogue dialogue)
     {
         GameData.Dialogue = true;
-        Debug.Log("Sending dialogue of " + dialogue.EntityName);
 
         currentDialogue.Clear();
-        foreach(string sentence in dialogue.EntityDialogue)
+
+        if(dialogue.entityDialogue.Length > 0)
         {
-            currentDialogue.Enqueue(sentence);
+            Debug.Log("Dialogue: " + dialogue.entityDialogue);
+            dialogueText.text = dialogue.entityDialogue;
         }
-
-        sendNextDialogue();
-    }
-
-    public void sendNextDialogue()
-    {
-        if(currentDialogue.Count == 0)
-        {
-            endDialogue();
-            return;
-        }
-
-        string s  = currentDialogue.Dequeue();
-        dialogueText.text = s;
-        Debug.Log(s);
-    }
-
-    public void endDialogue()
-    {
-        GameData.Dialogue = false;
-        Debug.Log("Dialogue ended.");
+            
     }
 }
