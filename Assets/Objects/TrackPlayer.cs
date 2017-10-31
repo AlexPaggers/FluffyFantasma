@@ -12,7 +12,7 @@ public class TrackPlayer : MonoBehaviour {
 	public float lookDist = 20; //enemies can look at the player (for shooting at them)
 	public float moveDist = 10; //objects can move to the player
 	public float stopDist = 0; //objects stop a certain distance from the player
-	public bool targetFound = false;
+	public static bool targetFound = false;
 	private Transform current;
 
 
@@ -56,5 +56,8 @@ public class TrackPlayer : MonoBehaviour {
 		current = transform;
 	}
 
-
+    public static bool getPlayerVisable()
+    {
+        return targetFound;
+    }
 }

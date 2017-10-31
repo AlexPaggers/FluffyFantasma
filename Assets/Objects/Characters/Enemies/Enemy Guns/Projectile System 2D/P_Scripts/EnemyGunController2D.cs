@@ -7,7 +7,7 @@ public class EnemyGunController2D : MonoBehaviour
 {
 
     public int rotationOffset = 0;
-	public float accuracy = 10f;
+	public float accuracy = 5f;
 	public static float aim = 0f;
 
 	void Start ()

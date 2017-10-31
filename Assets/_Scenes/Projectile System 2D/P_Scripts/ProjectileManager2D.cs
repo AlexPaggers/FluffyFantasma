@@ -27,7 +27,7 @@ public class ProjectileManager2D : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         fireType = FireType2D.SINGLE;
-        fireRate = 2;
+        fireRate = 4;
         firePoint = transform.Find("FirePoint");
         if (firePoint == null)
         {
