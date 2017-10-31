@@ -47,18 +47,7 @@ public class PlayerMovement2D : MonoBehaviour {
 
         if (Input.GetButtonDown("Jump") && movement2D.GetGameType() == CharacterMovement2D.GameType2D.SIDE_SCROLLER)
         {
-            Debug.Log(GameData.Dialogue);
-            if (GameData.Dialogue)
-            {
-                //FindObjectOfType<DialogueManager>().sendNextDialogue();
-                Debug.Log("works");
-            }
-            else
-            {
-                movement2D.jump();
-            }
-                
-           
+           movement2D.jump();
         }
 
         if(movement2D.GetCurrentSpeed().x < 0)
@@ -84,7 +73,6 @@ public class PlayerMovement2D : MonoBehaviour {
                 movement2D.SetGameType(CharacterMovement2D.GameType2D.TOP_DOWN_VIEW);
             }
         }
-
         else if(movement2D.GetGameType() == CharacterMovement2D.GameType2D.TOP_DOWN_VIEW)
         {
             movement2D.move(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
@@ -93,7 +81,6 @@ public class PlayerMovement2D : MonoBehaviour {
             {
                 movement2D.SetGameType(CharacterMovement2D.GameType2D.SIDE_SCROLLER);
             }
-
         }
         Grounded();
     }
@@ -122,10 +109,12 @@ public class PlayerMovement2D : MonoBehaviour {
             if(dist > 1f)
             {
                 movement2D.SetGrounded(false);
+                print("Set grounded false");
             }
             else
             {
                 movement2D.SetGrounded(true);
+                print("Set grounded true");
             }
         }
     }
