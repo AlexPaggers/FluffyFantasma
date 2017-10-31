@@ -10,7 +10,7 @@ public class Sidescoll : MonoBehaviour {
 	public float speed = 2;
 	public float adjust = 0;
 	private Transform current;
-	private bool bossRoom = false;
+	public bool bossRoom = false;
 	// Use this for initialization
 	void Start ()
 	{
