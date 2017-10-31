@@ -12,6 +12,7 @@ public class GameData : MonoBehaviour
     }
     static int credits;
     static float time;
+    static bool dialogue;
     static bool bossActive;
     static Difficulty difficulty;
 
@@ -40,6 +41,18 @@ public class GameData : MonoBehaviour
         get
         {
             return time;
+        }
+    }
+
+    public static bool Dialogue
+    {
+        get
+        {
+            return dialogue;
+        }
+        set
+        {
+            value = dialogue;
         }
     }
 

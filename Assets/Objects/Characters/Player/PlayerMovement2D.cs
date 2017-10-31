@@ -43,15 +43,22 @@ public class PlayerMovement2D : MonoBehaviour {
                 blinking = false;
                 sprite.enabled = true;
             }
-
-           
-
         }
 
-        if (Input.GetButtonDown("Jump") &&
-            movement2D.GetGameType() == CharacterMovement2D.GameType2D.SIDE_SCROLLER)
+        if (Input.GetButtonDown("Jump") && movement2D.GetGameType() == CharacterMovement2D.GameType2D.SIDE_SCROLLER)
         {
-            movement2D.jump();
+            Debug.Log(GameData.Dialogue);
+            if (GameData.Dialogue)
+            {
+                //FindObjectOfType<DialogueManager>().sendNextDialogue();
+                Debug.Log("works");
+            }
+            else
+            {
+                movement2D.jump();
+            }
+                
+           
         }
 
         if(movement2D.GetCurrentSpeed().x < 0)
@@ -88,28 +95,52 @@ public class PlayerMovement2D : MonoBehaviour {
             }
 
         }
-	}
 
+<<<<<<< HEAD
     void OnTriggerStay2D(Collider2D col)
     {
         if(col.gameObject.tag != "Bullet"
             && col.gameObject.tag != "Damaging" 
             && col.gameObject.tag != "Room")
         {
-            print("Object: " + col.gameObject.name);
+          //  print("Object: " + col.gameObject.name);
             movement2D.SetGrounded(true);
         }
+=======
+        Grounded();
+
+>>>>>>> f79c9bc76cbe5be9330529821a8de8b9123b59f3
     }
+
+   void OnTriggerStay2D(Collider2D col)
+   { //
+     // if(col.gameObject.tag != "Bullet"
+     //     && col.gameObject.tag != "Damaging" 
+     //     && col.gameObject.tag != "Room")
+     // {
+     //     print("Object: " + col.gameObject.name);
+     //     movement2D.SetGrounded(true);
+     // }
+   }
 
     void OnTriggerExit2D(Collider2D col)
     {
+<<<<<<< HEAD
         if(col.gameObject.tag != "Bullet"
             && col.gameObject.tag != "Damaging"
             && col.gameObject.tag != "Room")            
         {
-            print("Trigger Exit");
+            //print("Trigger Exit");
             movement2D.SetGrounded(false);
         }
+=======
+       // if(col.gameObject.tag != "Bullet"
+       //     && col.gameObject.tag != "Damaging")            
+       // {
+       //     print("Trigger Exit");
+       //     movement2D.SetGrounded(false);
+       // }
+>>>>>>> f79c9bc76cbe5be9330529821a8de8b9123b59f3
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -124,4 +155,44 @@ public class PlayerMovement2D : MonoBehaviour {
         }
     }
 
+
+    private void Grounded()
+    {
+        var hitAll = Physics2D.RaycastAll(transform.position, Vector2.down);
+        foreach(var hit in hitAll)
+        {
+            if(hit.collider.gameObject.tag == "Player") continue;
+
+            var dist = Vector2.Distance(transform.position, hit.point);
+            if(dist > 1f)
+            {
+                movement2D.SetGrounded(false);
+            }
+            else
+            {
+                movement2D.SetGrounded(true);
+            }
+        }
+    }
 }
+
+/*        // Raycast grounded test
+        float dist = 0f;
+        var rayOrigin = new Vector2(transform.position.x, transform.position.y - (sprite.bounds.size.y / 2f));
+        var hit = Physics2D.Raycast(rayOrigin, Vector2.down, 0.1f);
+        
+        Debug.DrawRay(rayOrigin, Vector2.down, Color.yellow);
+
+        // if its not the player update the distance.
+        if(hit.collider.gameObject.name != "Player")
+        {
+            dist = Vector2.Distance(rayOrigin, hit.point);
+        }
+        print("Distance to ground is " + dist);
+
+        // check the distance to see how far the player is from the floor.
+        if(dist > 0.1f)
+        {
+            // if they are a certain distnace away then they must be off the ground.
+            print("Player is off ground");
+        }*/
