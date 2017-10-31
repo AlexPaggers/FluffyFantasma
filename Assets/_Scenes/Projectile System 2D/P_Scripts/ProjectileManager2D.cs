@@ -38,13 +38,11 @@ public class ProjectileManager2D : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-
         if (tripleActive != false)
         {
             fireType = FireType2D.SHOTGUN;
         }
-
-        if (Input.GetButton("XButton") && Time.time > timeToFire)
+		if ((Input.GetButton("XButton") || Input.GetKeyDown("insert")) && Time.time > timeToFire)
         {
             timeToFire = Time.time + 1 / (fireRate * multiplier);
             switch (fireType)

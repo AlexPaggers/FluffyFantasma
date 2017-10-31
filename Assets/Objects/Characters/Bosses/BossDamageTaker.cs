@@ -13,11 +13,13 @@ public class BossDamageTaker : MonoBehaviour {
     public float maxHealth;
 
     private SpriteRenderer sprite;
+    public GameObject gun;
 
 	// Use this for initialization
 	void Start () {
         sprite = GetComponent<SpriteRenderer>();
-	}
+        gun = GameObject.Find("Gun");
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -47,6 +49,7 @@ public class BossDamageTaker : MonoBehaviour {
         if (col.gameObject.tag == "Bullet" &&
             !blinking)
         {
+            maxHealth = maxHealth - gun.GetComponent<ProjectileManager2D>().damage;
             blinking = true;
             timeToFire = Time.time + blinkTime;
             Debug.Log("ouch");

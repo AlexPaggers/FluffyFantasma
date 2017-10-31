@@ -10,16 +10,25 @@ public class Sidescoll : MonoBehaviour {
 	public float speed = 2;
 	public float adjust = 0;
 	private Transform current;
-	private bool bossRoom = false;
+	public bool bossRoom = false;
 	// Use this for initialization
 	void Start ()
 	{
-		target = GameObject.FindWithTag("Player"); //target the player
+        //target the player
+        
+    }
 
-	}
-	
-	// Update is called once per frame
-	void LateUpdate () 
+
+    private void Update()
+    {
+        if(target == null)
+        {
+            target = GameObject.FindWithTag("Player");
+        }
+    }
+
+    // Update is called once per frame
+    void LateUpdate () 
 	{
 
 		//set whether in a boss room or not based on gamedata :)

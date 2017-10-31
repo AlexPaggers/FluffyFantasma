@@ -8,6 +8,7 @@ public class PlayerData : MonoBehaviour
     static int maxHealth;
     static int lives;
     static int score;
+    static float ghostMeter;
     static float timer;
     static bool ghostForm;
 
@@ -19,6 +20,7 @@ public class PlayerData : MonoBehaviour
         lives = GameData.CreditsRemaining;
         score = 0;
         timer = 0;
+        ghostMeter = 0.5f;
     }
 
     void Update()
@@ -110,4 +112,15 @@ public class PlayerData : MonoBehaviour
         }
     }
 
+    public static float GhostMeter
+    {
+        get
+        {
+            return ghostMeter;
+        }
+        set
+        {
+            value = ghostMeter;
+        }
+    }
 }
