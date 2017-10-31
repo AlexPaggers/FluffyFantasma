@@ -12,17 +12,20 @@ public enum PUTypes
 public class PowerUpsManager : MonoBehaviour {
 
     public PUTypes pUpType;
+    public Sprite SpeedSprite;
+    public Sprite Trple;
+    public Sprite Follow;
 	// Use this for initialization
 	void Start () { 
 
-        int val = Random.Range(0, 11);
+        int val = Random.Range(0, 21);
 
         switch (val)
         {
-            case 3:
+            case 10:
                 pUpType = PUTypes.TRIPLE_SHOOT;
                 break;
-            case 6:
+            case 20:
                 pUpType = PUTypes.FOLLOW;
                 break;
             default:
@@ -33,15 +36,18 @@ public class PowerUpsManager : MonoBehaviour {
         switch (pUpType)
         {
             case PUTypes.SPEED_INC:
-                GetComponent<SpriteRenderer>().color = Color.red;
+                GetComponent<SpriteRenderer>().sprite = SpeedSprite;
+                GetComponent<ParticleSystem>().startColor = Color.red;
                 //Set Speed Sprite
                 break;
             case PUTypes.TRIPLE_SHOOT:
-                GetComponent<SpriteRenderer>().color = Color.blue;
+                GetComponent<SpriteRenderer>().sprite = Trple;
+                GetComponent<ParticleSystem>().startColor = Color.cyan;
                 //Set Triple Shoot Sprite
                 break;
             case PUTypes.FOLLOW:
-                GetComponent<SpriteRenderer>().color = Color.yellow;
+                GetComponent<SpriteRenderer>().sprite = Follow;
+                GetComponent<ParticleSystem>().startColor = Color.yellow;
                 //Set Follow
                 break;
             default:
