@@ -48,10 +48,20 @@ public class PlayerMovement2D : MonoBehaviour {
 
         }
 
-        if (Input.GetButtonDown("Jump") &&
-            movement2D.GetGameType() == CharacterMovement2D.GameType2D.SIDE_SCROLLER)
+        if (Input.GetButtonDown("Jump") && movement2D.GetGameType() == CharacterMovement2D.GameType2D.SIDE_SCROLLER)
         {
-            movement2D.jump();
+            Debug.Log(GameData.Dialogue);
+            if (GameData.Dialogue)
+            {
+                //FindObjectOfType<DialogueManager>().sendNextDialogue();
+                Debug.Log("works");
+            }
+            else
+            {
+                movement2D.jump();
+            }
+                
+           
         }
 
         if(movement2D.GetCurrentSpeed().x < 0)
@@ -96,7 +106,7 @@ public class PlayerMovement2D : MonoBehaviour {
             && col.gameObject.tag != "Damaging" 
             && col.gameObject.tag != "Room")
         {
-            print("Object: " + col.gameObject.name);
+          //  print("Object: " + col.gameObject.name);
             movement2D.SetGrounded(true);
         }
     }
@@ -107,7 +117,7 @@ public class PlayerMovement2D : MonoBehaviour {
             && col.gameObject.tag != "Damaging"
             && col.gameObject.tag != "Room")            
         {
-            print("Trigger Exit");
+            //print("Trigger Exit");
             movement2D.SetGrounded(false);
         }
     }
