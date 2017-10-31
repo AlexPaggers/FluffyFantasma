@@ -12,20 +12,17 @@ public enum PUTypes
 public class PowerUpsManager : MonoBehaviour {
 
     public PUTypes pUpType;
-
-    bool followActive = false;
-    bool tripleActive = false;
 	// Use this for initialization
 	void Start () { 
 
-        int val = Random.Range(0, 11);
+        int val = Random.Range(0, 3);
 
         switch (val)
         {
-            case 3:
+            case 1:
                 pUpType = PUTypes.TRIPLE_SHOOT;
                 break;
-            case 6:
+            case 2:
                 pUpType = PUTypes.FOLLOW;
                 break;
             default:
@@ -65,12 +62,15 @@ public class PowerUpsManager : MonoBehaviour {
             switch (pUpType)
             {
                 case PUTypes.SPEED_INC:
+                    ProjectileManager2D.incFireRate();
                     //Add extra speed
                     break;
                 case PUTypes.TRIPLE_SHOOT:
+                    ProjectileManager2D.actTripleShoot();
                     //Set as Shotgun in Gund
                     break;
                 case PUTypes.FOLLOW:
+                    Projectile2D.followOn();
                     //Set to Follow
                     break;
                 default:
