@@ -15,14 +15,14 @@ public class PowerUpsManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () { 
 
-        int val = Random.Range(0, 3);
+        int val = Random.Range(0, 11);
 
         switch (val)
         {
-            case 1:
+            case 3:
                 pUpType = PUTypes.TRIPLE_SHOOT;
                 break;
-            case 2:
+            case 6:
                 pUpType = PUTypes.FOLLOW;
                 break;
             default:
