@@ -7,7 +7,7 @@ public class PlayerData : MonoBehaviour
 {
     static int health;
     static int maxHealth;
-    static int lives;
+    public static int lives;
     static int score;
     static float ghostMeter;
     static float timer;
@@ -127,7 +127,7 @@ public class PlayerData : MonoBehaviour
 
     public static void addGhostMeter()
     {
-        ghostMeter += 0.1f;
+        ghostMeter += 0.01f;
     }
 
     public static void subGhostMeter()
