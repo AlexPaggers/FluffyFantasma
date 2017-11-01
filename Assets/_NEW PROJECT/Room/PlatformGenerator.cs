@@ -11,6 +11,8 @@ public class PlatformGenerator : MonoBehaviour
     public List<GameObject> roomOnePlatforms = new List<GameObject>();
     public List<GameObject> roomTwoPlatforms = new List<GameObject>();
 
+    public bool bossMode = false;
+
 
     private Sidescoll sideScroll;
     private float roomOneMin = 0f;
@@ -41,7 +43,6 @@ public class PlatformGenerator : MonoBehaviour
         if (TrapDoor.TrapDoorHit)
         {
             SetPreviousRoom();
-            
 
             StopAllCoroutines();
             StartCoroutine(LoadPlatforms());
@@ -50,7 +51,14 @@ public class PlatformGenerator : MonoBehaviour
 
     private void Regenerate()
     {
-        AddPlatforms();
+        if (!bossMode)
+        {
+            AddPlatforms();
+        }
+        else
+        {
+            // Boss Mode
+        }
     }
 
     private void ClearRooms()
