@@ -35,7 +35,7 @@ public class GameOver : MonoBehaviour
 
     string readHighscore()
     {
-        string path = "Assets/_Scenes/Menu/Highscores.txt";
+        string path = "Assets/Scenes/Menu/New/Highscores.txt";
 
         //Re-import the file to update the reference in the editor
         AssetDatabase.ImportAsset(path);
@@ -46,7 +46,7 @@ public class GameOver : MonoBehaviour
         reader.Close();
         if (PlayerData.Score > HighScore)
         {
-            File.WriteAllText("Assets/_Scenes/Menu/Highscores.txt", "");
+            File.WriteAllText("Assets/Scenes/Menu/New/Highscores.txt", "");
             StreamWriter writer = new StreamWriter(path, true);
             writer.WriteLine(PlayerData.Score.ToString());
             writer.Close();

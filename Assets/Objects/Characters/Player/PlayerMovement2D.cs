@@ -143,13 +143,20 @@ public class PlayerMovement2D : MonoBehaviour {
             if(dist > 1f)
             {
                 movement2D.SetGrounded(false);
+<<<<<<< HEAD
                 print("Set grounded false");
+=======
+>>>>>>> 0085f01b4ca9b59d97945f1df41963552694246e
             }
             else
             {
                 movement2D.SetGrounded(true);
+<<<<<<< HEAD
 				return;
                 print("Set grounded true");
+=======
+                return;
+>>>>>>> 0085f01b4ca9b59d97945f1df41963552694246e
             }
         }
     }

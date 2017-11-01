@@ -23,7 +23,7 @@ public class Sidescoll : MonoBehaviour
 	{
         //target the player
         currentRoom = roomOne;
-        
+        print("Current Room is " + roomOne.gameObject.name);
     }
 
 
@@ -35,11 +35,13 @@ public class Sidescoll : MonoBehaviour
         }
     }
 
+
     // Update is called once per frame
     void LateUpdate () 
 	{
         if (TrapDoor.TrapDoorHit)
         {
+            print("Trap Door Hit");
             if(currentRoom == roomOne)
             {
                 nextRoom = roomTwo;
@@ -78,10 +80,11 @@ public class Sidescoll : MonoBehaviour
     {
         while(true)
         {
+        print("MOVE ROOM");
             var newPosition = Vector3.Lerp(current.position, nextRoom.transform.position, speed * Time.deltaTime);
             current.position = new Vector3(newPosition.x, current.position.y, current.position.z);
 
-            if(Vector2.Distance(transform.position, nextRoom.transform.position) < 0.5f)
+            if(Vector2.Distance(transform.position, nextRoom.transform.position) < 0.05f)
             {
                 break;
             }

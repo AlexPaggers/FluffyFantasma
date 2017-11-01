@@ -125,7 +125,7 @@ public class PowerUpsManager : MonoBehaviour {
                     //Add extra speed
                     break;
 				case PUTypes.ONE_UP:
-					PlayerData.Lives++;
+					PlayerData.lives++;
 					Destroy(gameObject);
 					//Add extra life
 					break;
