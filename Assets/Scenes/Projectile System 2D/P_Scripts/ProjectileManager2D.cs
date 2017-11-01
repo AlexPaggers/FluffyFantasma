@@ -33,6 +33,7 @@ public class ProjectileManager2D : MonoBehaviour {
         {
             Debug.LogError("No firepoint");
         }
+        GetComponent<ParticleSystem>().enableEmission = false;
     }
 	
 	// Update is called once per frame
@@ -41,20 +42,30 @@ public class ProjectileManager2D : MonoBehaviour {
         if (tripleActive != false)
         {
             fireType = FireType2D.SHOTGUN;
+            GetComponent<ParticleSystem>().startColor = Color.cyan;
+            GetComponent<ParticleSystem>().enableEmission = true;
+        }
+        if (tripleActive == false && multiplier != true)
+        {
+            GetComponent<ParticleSystem>().enableEmission = false;
+            fireType = FireType2D.SINGLE;
         }
         if (tripleActive == false)
         {
             fireType = FireType2D.SINGLE;
         }
-		if ((Input.GetButton("XButton") || Input.GetKeyDown("insert")) && Time.time > timeToFire)
+        if ((Input.GetButton("XButton") || Input.GetKeyDown("insert")) && Time.time > timeToFire)
         {
             if (multiplier)
             {
                 timeToFire = Time.time + 1 / (fireRate * 2);
+                GetComponent<ParticleSystem>().startColor = Color.red;
+                GetComponent<ParticleSystem>().enableEmission = true;
             }
             else
             {
                 timeToFire = Time.time + 1 / fireRate;
+                GetComponent<ParticleSystem>().enableEmission = false;
             }
 
             switch (fireType)
@@ -293,4 +304,5 @@ public class ProjectileManager2D : MonoBehaviour {
     {
         return tripleActive = false;
     }
+
 }
