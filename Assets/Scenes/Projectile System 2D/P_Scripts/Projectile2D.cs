@@ -64,7 +64,7 @@ public class Projectile2D : MonoBehaviour {
     public GameObject FindClosestEnemy()
     {
         GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Damaging");
+        gos = GameObject.FindGameObjectsWithTag("Enemy");
         GameObject closest = null;
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;

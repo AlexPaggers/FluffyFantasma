@@ -22,9 +22,9 @@ public class Enemy : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-		if(col.gameObject.tag == "Bullet")
+        if (col.gameObject.tag == "Bullet")
 		{
-			SpawnDrops();
+            SpawnDrops();
 			DeathAudio();
 			StartCoroutine(DestroyOnceEffectsHaveFinished());
 
@@ -39,12 +39,12 @@ public class Enemy : MonoBehaviour {
 			//gameObject.GetComponent<Spawner>().SpawnObject();
 			if (i >= 3)
 			{
-			//	Instantiate(powerUp.transform, this.transform, Quaternion.identity);
+				//	Instantiate(powerUp.transform, this.transform, Quaternion.identity);
 				i += 3;
 			}
 			else 
 			{
-		//		Instantiate(globe.transform, this.transform, Quaternion.identity);
+				//		Instantiate(globe.transform, this.transform, Quaternion.identity);
 			}
 		}
 
