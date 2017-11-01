@@ -52,6 +52,7 @@ public class GhostData : MonoBehaviour {
         {
             Destroy(col.gameObject);
             PlayerData.addGhostMeter();
+            PlayerData.addScore(25);
             Debug.Log(PlayerData.GhostMeter);
             
             if(PlayerData.getGhostMeter() >= 1)
