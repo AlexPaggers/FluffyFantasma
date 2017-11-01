@@ -12,7 +12,6 @@ public class ProjectileManager2D : MonoBehaviour {
 
     public float fireRate = 0;
     public float damage = 10;
-    private static float multiplier = 0.25f;
 
     public Transform bulletPrefab;
     private float timeToFire = 0;
@@ -24,6 +23,7 @@ public class ProjectileManager2D : MonoBehaviour {
 
     public static bool followActive = false;
     public static bool tripleActive = false;
+    public static bool multiplier = false;
     // Use this for initialization
     void Awake () {
         fireType = FireType2D.SINGLE;
@@ -48,7 +48,15 @@ public class ProjectileManager2D : MonoBehaviour {
         }
 		if ((Input.GetButton("XButton") || Input.GetKeyDown("insert")) && Time.time > timeToFire)
         {
-            timeToFire = Time.time + 1 / (fireRate * multiplier);
+            if (multiplier)
+            {
+                timeToFire = Time.time + 1 / (fireRate * 2);
+            }
+            else
+            {
+                timeToFire = Time.time + 1 / fireRate;
+            }
+
             switch (fireType)
             {
                 case FireType2D.SINGLE:
@@ -268,9 +276,13 @@ public class ProjectileManager2D : MonoBehaviour {
         lastRot = rot;
     }
 
-    public static void incFireRate()
+    public static bool actFireRate()
     {
-        multiplier += multiplier;
+        return multiplier = true;
+    }
+    public static bool disFireRate()
+    {
+        return multiplier = false;
     }
 
     public static bool actTripleShoot()
