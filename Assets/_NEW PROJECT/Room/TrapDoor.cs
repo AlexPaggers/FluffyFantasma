@@ -39,12 +39,6 @@ public class TrapDoor : MonoBehaviour
     {
         if (doorActivated)
         {
-            if (timer >= (MAX_TIME / 2f))
-            {
-                readyToLoad = true;
-            }
-
-
             if (timer <= MAX_TIME)
             {
                 timer += Time.deltaTime;

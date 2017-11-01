@@ -19,6 +19,10 @@ public class PlatformGenerator : MonoBehaviour
     private float roomTwoMax = 0f;
 
 
+    public float timer = 0f;
+    public float MAX_TIME = 5f;
+
+
 
 
     private void Start()
@@ -36,27 +40,28 @@ public class PlatformGenerator : MonoBehaviour
     {
         if (TrapDoor.TrapDoorHit)
         {
-            Regenerate();
+            SetPreviousRoom();
+            
+
+            StopAllCoroutines();
+            StartCoroutine(LoadPlatforms());
         }
     }
 
     private void Regenerate()
     {
-        SetPreviousRoom();
-        ClearRooms();
         AddPlatforms();
     }
 
     private void ClearRooms()
     {
-        if (sideScroll.currentRoom == sideScroll.roomOne)
+        if (prevRoom == sideScroll.roomOne)
         {
             foreach (var platform in roomOnePlatforms)
             {
                 Destroy(platform);
             }
             roomOnePlatforms.Clear();
-           
         }
         else
         {
@@ -65,6 +70,7 @@ public class PlatformGenerator : MonoBehaviour
                 Destroy(platform);
             }
             roomTwoPlatforms.Clear();
+
         }
     }
 
@@ -127,5 +133,31 @@ public class PlatformGenerator : MonoBehaviour
                 roomTwoPlatforms.Add(newPlatform);
             }
         }
+    }
+
+
+
+    private IEnumerator LoadPlatforms()
+    {
+        while(true)
+        {
+            if (timer >= (MAX_TIME / 2f) && timer <= MAX_TIME)
+            {
+                ClearRooms();
+            }
+
+            if (timer <= MAX_TIME)
+            {
+                timer += Time.deltaTime;
+            }
+            else
+            {
+                Regenerate();
+                timer = 0f;
+                break;
+            }
+            yield return false;
+        }
+        yield return true;
     }
 }
