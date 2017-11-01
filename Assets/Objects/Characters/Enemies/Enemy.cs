@@ -33,20 +33,19 @@ public class Enemy : MonoBehaviour {
 
 	private void SpawnDrops()
 	{
-		int total = Random.Range (0, 4);
-		for (int i = 0; i < total; i++) 
-		{
-			//gameObject.GetComponent<Spawner>().SpawnObject();
-			if (i >= 3)
-			{
-				//	Instantiate(powerUp.transform, this.transform, Quaternion.identity);
-				i += 3;
-			}
-			else 
-			{
-				//		Instantiate(globe.transform, this.transform, Quaternion.identity);
-			}
-		}
+
+        if(Random.Range (0,5) < 4)
+        {
+            int total = Random.Range(1, 4);
+            for (int i = 0; i < total; i++)
+            {
+                Instantiate(globe.transform, this.transform.position, Quaternion.identity);
+            }
+        }
+        else
+        {
+            Instantiate(powerUp.transform, this.transform.position, Quaternion.identity);
+        }
 
 	}
 
