@@ -42,7 +42,7 @@ public class PlayerData : MonoBehaviour
                 Debug.Log("No health left! Life lost!");
                 if (lives < 0)
                 {
-                    SceneManager.LoadScene(SceneManager.GetSceneByName("GameOver").name);
+                    SceneManager.LoadScene(2);
                     Debug.Log("No lives left! Game over!");
                 }
             }

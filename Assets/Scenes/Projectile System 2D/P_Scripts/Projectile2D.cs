@@ -25,7 +25,7 @@ public class Projectile2D : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (follow == true)
+        if (follow == true && FindClosestEnemy() != null)
         {
             target = FindClosestEnemy();
             Vector3 dir = target.transform.position - transform.position;
