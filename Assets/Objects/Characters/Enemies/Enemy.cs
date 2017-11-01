@@ -8,16 +8,27 @@ public class Enemy : MonoBehaviour {
 
 	private AudioSource source { get { return this.GetComponent<AudioSource>(); } }
 
+    public ParticleSystem particle;
+
+    public GameObject player;
+
 	public GameObject powerUp;
 	public GameObject globe;
 	// Use this for initialization
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+    // Update is called once per frame
+    void Update() {
+        if (player.transform.position.x > transform.position.x)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
 	}
 
 
@@ -30,12 +41,24 @@ public class Enemy : MonoBehaviour {
             {
                 SpawnDrops();
                 DeathAudio();
+                Instantiate(particle, transform.position, transform.rotation);
+                PlayerData.addScore(50);
                 StartCoroutine(DestroyOnceEffectsHaveFinished());
             }
 		}
 	}
 
-	private void SpawnDrops()
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            DeathAudio();
+            Instantiate(particle, transform.position, transform.rotation);
+            StartCoroutine(DestroyOnceEffectsHaveFinished());
+        }
+    }
+
+    private void SpawnDrops()
 	{
 
         if(Random.Range (0,5) < 4)
