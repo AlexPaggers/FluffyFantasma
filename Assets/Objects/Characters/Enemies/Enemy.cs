@@ -7,7 +7,8 @@ public class Enemy : MonoBehaviour {
 
 	private AudioSource source { get { return this.GetComponent<AudioSource>(); } }
 
-	public GameObject coin;
+	public GameObject powerUp;
+	public GameObject globe;
 	// Use this for initialization
 	void Start () {
 		
@@ -32,12 +33,19 @@ public class Enemy : MonoBehaviour {
 
 	private void SpawnDrops()
 	{
-		int total = Random.Range (2, 12);
+		int total = Random.Range (0, 4);
 		for (int i = 0; i < total; i++) 
 		{
-			gameObject.GetComponent<Spawner>().SpawnObject();
-			//Instantiate (coin, this.transform, Quaternion.identity);
-
+			//gameObject.GetComponent<Spawner>().SpawnObject();
+			if (i >= 3)
+			{
+			//	Instantiate(powerUp.transform, this.transform, Quaternion.identity);
+				i += 3;
+			}
+			else 
+			{
+		//		Instantiate(globe.transform, this.transform, Quaternion.identity);
+			}
 		}
 
 	}
