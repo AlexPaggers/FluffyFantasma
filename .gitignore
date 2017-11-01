@@ -32,8 +32,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-*.meta
-*.meta
-*.meta
-Assets/Audio/GhostHurt.mp3.meta
-Assets/Objects/Characters/Player/Player.prefab
+#*.meta

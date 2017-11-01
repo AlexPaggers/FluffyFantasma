@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: fcf83585c4355df4eb0199b9d0824ded
+timeCreated: 1508944326
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: URANIUM MAFIA
+  fontNames:
+  - URANIUM MAFIA
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

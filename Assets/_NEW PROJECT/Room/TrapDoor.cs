@@ -30,6 +30,7 @@ public class TrapDoor : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
+
             TrapDoorHit = true;
         }
     }
