@@ -73,7 +73,7 @@ public class MainMenu : MonoBehaviour {
         if(Input.GetKeyDown("joystick button 7") || Input.GetKeyDown("escape"))
         {
             if (GameData.CreditsRemaining > 0)
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                SceneManager.LoadScene("MainLevel");
             else
                 Debug.Log("No game credits.");
         }
