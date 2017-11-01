@@ -6,15 +6,17 @@ public enum PUTypes
 {
     SPEED_INC = 0,
     TRIPLE_SHOOT = 1,
-    FOLLOW = 2
+    FOLLOW = 2,
+	ONE_UP = 3
 }
 
 public class PowerUpsManager : MonoBehaviour {
 
     public PUTypes pUpType;
 
-    public Sprite SpeedSprite;
-    public Sprite Trple;
+	public Sprite SpeedSprite;
+	public Sprite LifeSprite;
+    public Sprite Triple;
     public Sprite Follow;
 
     private float timeToFollow = 0;
@@ -30,6 +32,9 @@ public class PowerUpsManager : MonoBehaviour {
 
         switch (val)
         {
+			case 1:
+				pUpType = PUTypes.ONE_UP;
+				break;
             case 10:
                 pUpType = PUTypes.TRIPLE_SHOOT;
                 break;
@@ -48,8 +53,13 @@ public class PowerUpsManager : MonoBehaviour {
                 GetComponent<ParticleSystem>().startColor = Color.red;
                 //Set Speed Sprite
                 break;
+			case PUTypes.ONE_UP:
+				GetComponent<SpriteRenderer>().sprite = LifeSprite;
+				GetComponent<ParticleSystem>().startColor = Color.green;
+				//Set ONE UP
+				break;
             case PUTypes.TRIPLE_SHOOT:
-                GetComponent<SpriteRenderer>().sprite = Trple;
+                GetComponent<SpriteRenderer>().sprite = Triple;
                 GetComponent<ParticleSystem>().startColor = Color.cyan;
                 //Set Triple Shoot Sprite
                 break;
@@ -114,6 +124,11 @@ public class PowerUpsManager : MonoBehaviour {
                     Destroy(gameObject);
                     //Add extra speed
                     break;
+				case PUTypes.ONE_UP:
+					PlayerData.Lives++;
+					Destroy(gameObject);
+					//Add extra life
+					break;
                 case PUTypes.TRIPLE_SHOOT:
                     ProjectileManager2D.actTripleShoot();
                     GetComponent<SpriteRenderer>().enabled = false;
