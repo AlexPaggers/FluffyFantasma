@@ -42,14 +42,16 @@ public class TrapDoor : MonoBehaviour
             if (timer <= MAX_TIME)
             {
                 timer += Time.deltaTime;
-                doorLocked = true;
+				doorLocked = true;
+				GetComponent<ParticleSystem>().enableEmission = false;
             }
             else
             {
                 GetComponent<BoxCollider2D>().isTrigger = true;
                 readyToLoad = false;
                 doorActivated = false;
-                doorLocked = false;
+				doorLocked = false;
+				GetComponent<ParticleSystem>().enableEmission = true;
                 timer = 0f;
             }
         }
