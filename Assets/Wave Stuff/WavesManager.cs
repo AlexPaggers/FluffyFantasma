@@ -6,7 +6,7 @@ public class WavesManager : MonoBehaviour {
 
     public int currentWave;
 
-    public GameObject[] spawnPoints;
+    public List<GameObject> spawnPoints = new List<GameObject>();
 
     public GameObject[] enemies;
 

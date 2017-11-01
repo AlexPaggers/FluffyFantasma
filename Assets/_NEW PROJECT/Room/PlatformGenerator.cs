@@ -69,12 +69,12 @@ public class PlatformGenerator : MonoBehaviour
             {
                 if (!currentBoss.GetComponentInChildren<gorillaBoss>().dead)
                 {
-                    trapDoor.GetComponent<SpriteRenderer>().sprite = GetComponent<TrapDoor>().doorClosed;
+                    trapDoor.GetComponent<SpriteRenderer>().sprite = trapDoor.GetComponent<TrapDoor>().doorClosed;
                 }
                 else
                 {
                     bossMode = false;
-                    trapDoor.GetComponent<SpriteRenderer>().sprite = GetComponent<TrapDoor>().doorOpen;
+                    trapDoor.GetComponent<SpriteRenderer>().sprite = trapDoor.GetComponent<TrapDoor>().doorOpen;
                 }
             }
         }

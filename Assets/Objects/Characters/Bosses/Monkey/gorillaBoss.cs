@@ -10,13 +10,15 @@ public class gorillaBoss : MonoBehaviour {
     public bool dead;
 
 	// Use this for initialization
-	void Start () {
-        head = GetComponent<BossDamageTaker>();
+	void Start ()
+    {
+        head = GetComponentInChildren<BossDamageTaker>();
         anim = GetComponentInParent<Animator>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		if (head.maxHealth <= 0 && !dead)
         {
             anim.SetTrigger("dead");
