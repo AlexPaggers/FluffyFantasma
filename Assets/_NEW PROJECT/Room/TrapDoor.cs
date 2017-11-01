@@ -46,6 +46,7 @@ public class TrapDoor : MonoBehaviour
                 timer += Time.deltaTime;
 				doorLocked = true;
 				GetComponent<ParticleSystem>().enableEmission = false;
+                GetComponent<SpriteRenderer>().sprite = doorClosed;
             }
             else
             {
@@ -65,7 +66,6 @@ public class TrapDoor : MonoBehaviour
     {
         if (doorLocked)
         {
-            GetComponent<SpriteRenderer>().sprite = doorClosed;
             GetComponent<BoxCollider2D>().isTrigger = false;
             return;
         }
