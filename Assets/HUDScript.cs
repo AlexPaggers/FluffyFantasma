@@ -12,15 +12,16 @@ public class HUDScript : MonoBehaviour {
 
     [SerializeField]
     Sprite emptyHeart;
+
     [SerializeField]
     Sprite fullHeart;
 
     //SpriteRenderer renderer;
 
     [SerializeField]
-    Text timer;
+    Text score;
     [SerializeField]
-    Text timerShadow;
+    Text scoreShadow;
 
     [SerializeField]
     Text lives;
@@ -40,7 +41,7 @@ public class HUDScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         updateLives();
-        updateTimer();
+        updateScore();
         updateHealth();
         updateGhostBar();
     }
@@ -70,8 +71,14 @@ public class HUDScript : MonoBehaviour {
     {
         string minutes = Mathf.Floor(PlayerData.TimeElapsed / 60).ToString("00");
         string seconds = Mathf.Floor(PlayerData.TimeElapsed % 60).ToString("00");
-        timer.text = string.Format("{0}:{1}", minutes, seconds);
-        timerShadow.text = string.Format("{0}:{1}", minutes, seconds);
+        //timer.text = string.Format("{0}:{1}", minutes, seconds);
+        //timerShadow.text = string.Format("{0}:{1}", minutes, seconds);
+    }
+
+    void updateScore()
+    {
+        score.text = PlayerData.Score.ToString("00000");
+        scoreShadow.text = PlayerData.Score.ToString("00000");
     }
 
     void updateLives()
