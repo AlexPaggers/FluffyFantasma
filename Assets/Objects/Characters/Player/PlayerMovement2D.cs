@@ -16,6 +16,10 @@ public class PlayerMovement2D : MonoBehaviour {
     [SerializeField]
     private float blinkTime, blinkSpeed;
 
+    public GameObject mainCamera;
+    public GameObject moveToPosition;
+    
+
 
 	// Use this for initialization
 	void Start ()
@@ -83,36 +87,16 @@ public class PlayerMovement2D : MonoBehaviour {
                 movement2D.SetGameType(CharacterMovement2D.GameType2D.SIDE_SCROLLER);
             }
         }
-    }
-
-    void OnTriggerStay2D(Collider2D col)
-    {
-        if(col.gameObject.tag != "Bullet"
-            && col.gameObject.tag != "Damaging" 
-            && col.gameObject.tag != "Room")
-        {
-          //  print("Object: " + col.gameObject.name);
-            movement2D.SetGrounded(true);
-        }
         Grounded();
     }
 
-    void OnTriggerExit2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag != "Bullet"
-            && col.gameObject.tag != "Damaging"
-            && col.gameObject.tag != "Room")            
-        {
-            //print("Trigger Exit");
-            movement2D.SetGrounded(false);
-        }
-       // if(col.gameObject.tag != "Bullet"
-       //     && col.gameObject.tag != "Damaging")            
-       // {
-       //     print("Trigger Exit");
-       //     movement2D.SetGrounded(false);
-       // }
-        Grounded();
+       if(col.gameObject.tag == "Boss Room")
+       {
+            mainCamera.GetComponent<Sidescoll>().bossRoom = true;
+            StartCoroutine(MoveToPosition());
+       }
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -123,8 +107,23 @@ public class PlayerMovement2D : MonoBehaviour {
             blinking = true;
             timeToFire = Time.time + blinkTime;
             PlayerData.inflictDamage();
-            //Debug.Log("ouch"); 
         }
+    }
+
+    private IEnumerator MoveToPosition()
+    {
+        while(true)
+        {
+            var newPosition = Vector2.Lerp(mainCamera.transform.position, moveToPosition.transform.position, 0.75f * Time.deltaTime);
+            mainCamera.transform.position = new Vector3(newPosition.x, mainCamera.transform.position.y, mainCamera.transform.position.z);
+
+            if(Vector2.Distance(mainCamera.transform.position, moveToPosition.transform.position) < 0.75f)
+            {
+                break;
+            }
+            yield return false;
+        }
+        yield return true;
     }
 
 
@@ -135,16 +134,15 @@ public class PlayerMovement2D : MonoBehaviour {
         {
             if(hit.collider.gameObject.tag == "Player") continue;
 
+            print("Hit colliders name: " + hit.collider.gameObject.name);
             var dist = Vector2.Distance(transform.position, hit.point);
             if(dist > 1f)
             {
                 movement2D.SetGrounded(false);
-                print("Set grounded false");
             }
             else
             {
                 movement2D.SetGrounded(true);
-                print("Set grounded true");
             }
         }
     }
