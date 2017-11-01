@@ -77,8 +77,8 @@ public class HUDScript : MonoBehaviour {
 
     void updateScore()
     {
-        score.text = PlayerData.Score.ToString("00000");
-        scoreShadow.text = PlayerData.Score.ToString("00000");
+        score.text = PlayerData.Score.ToString("000000");
+        scoreShadow.text = PlayerData.Score.ToString("000000");
     }
 
     void updateLives()
