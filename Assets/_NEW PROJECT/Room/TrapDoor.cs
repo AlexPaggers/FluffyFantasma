@@ -8,9 +8,10 @@ public class TrapDoor : MonoBehaviour
 {
     public float trapDoorSpeed = 500f;
     public float timer = 0f;
-    public float MAX_TIME = 5f;
+    public float MAX_TIME = 10f;
     public bool doorLocked = false;
     public bool doorActivated = false;
+    public static bool readyToLoad = false;
 
 
 
@@ -46,6 +47,7 @@ public class TrapDoor : MonoBehaviour
             else
             {
                 GetComponent<BoxCollider2D>().isTrigger = true;
+                readyToLoad = false;
                 doorActivated = false;
                 doorLocked = false;
                 timer = 0f;

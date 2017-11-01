@@ -95,6 +95,26 @@ public class ProjectileManager2D : MonoBehaviour {
             Effect();
         }
 
+        else if (myAngle == FireAngle2D.DOWN)
+        {
+            setRotation(275f);
+            Effect();
+            setRotation(265f);
+            Effect();
+            setRotation(270f);
+            Effect();
+        }
+
+        else if (myAngle == FireAngle2D.DDD_RIGHT) //Aiming UP RIGHT
+        {
+            setRotation(-72.5f);
+            Effect();
+            setRotation(-62.5f);
+            Effect();
+            setRotation(-67.5f);
+            Effect();
+        }
+
         else if (myAngle == FireAngle2D.DD_RIGHT) //Aiming UP RIGHT
         {
             setRotation(-50f);
@@ -152,6 +172,16 @@ public class ProjectileManager2D : MonoBehaviour {
             setRotation(62.5f);
             Effect();
             setRotation(67.5f);
+            Effect();
+        }
+
+        else if (myAngle == FireAngle2D.DDD_LEFT) //Aiming LEFT
+        {
+            setRotation(252.5f);
+            Effect();
+            setRotation(242.5f);
+            Effect();
+            setRotation(247.5f);
             Effect();
         }
 
