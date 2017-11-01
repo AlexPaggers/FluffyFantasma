@@ -32,8 +32,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-#*.meta
-Assets/Objects/Characters/Enemies/Enemy.cs
-Assets/Objects/Characters/Enemies/Enemy.cs
-Assets/Objects/Characters/Enemies/Enemy.cs
-*.prefab
+
