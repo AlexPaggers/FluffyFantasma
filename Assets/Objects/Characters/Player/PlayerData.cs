@@ -20,7 +20,7 @@ public class PlayerData : MonoBehaviour
         lives = GameData.CreditsRemaining;
         score = 0;
         timer = 0;
-        ghostMeter = 0.5f;
+        ghostMeter = 0;
     }
 
     void Update()
@@ -122,5 +122,25 @@ public class PlayerData : MonoBehaviour
         {
             value = ghostMeter;
         }
+    }
+
+    public static void addGhostMeter()
+    {
+        ghostMeter += 0.1f;
+    }
+
+    public static void subGhostMeter()
+    {
+        ghostMeter -= 0.001f;
+    }
+
+    public static float getGhostMeter()
+    {
+        return ghostMeter;
+    }
+
+    public static void setGhostMeter(float _ghostMeter)
+    {
+        ghostMeter = _ghostMeter;
     }
 }
