@@ -94,6 +94,7 @@ public class CharacterMovement2D : MonoBehaviour {
         else if (gameType == GameType2D.SIDE_SCROLLER)
         {
             GetComponent<Rigidbody2D>().gravityScale = gravity;
+            currentSpeed = Vector2.zero;
         }
 
         body = GetComponent<Rigidbody2D>();

@@ -64,10 +64,18 @@ public class PlayerMovement2D : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (movement2D.GetGameType() == CharacterMovement2D.GameType2D.SIDE_SCROLLER)
         if(movement2D.GetGameType() == CharacterMovement2D.GameType2D.SIDE_SCROLLER)
         {
             movement2D.move(new Vector2(Input.GetAxis("Horizontal"), 0));
+
+            if(Input.GetAxis("Horizontal") == 0 )
+            {
+                GetComponent<Animator>().SetBool("walking", false);
+            }
+            else
+            {
+                GetComponent<Animator>().SetBool("walking", true);
+            }
 
             if (Input.GetButtonDown("R2"))
             {
@@ -77,6 +85,7 @@ public class PlayerMovement2D : MonoBehaviour {
         else if(movement2D.GetGameType() == CharacterMovement2D.GameType2D.TOP_DOWN_VIEW)
         {
             movement2D.move(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+            Debug.Log(Input.GetAxis("Vertical"));
 
             if(Input.GetButtonDown("R2"))
             {
@@ -106,12 +115,7 @@ public class PlayerMovement2D : MonoBehaviour {
             //print("Trigger Exit");
             movement2D.SetGrounded(false);
         }
-       // if(col.gameObject.tag != "Bullet"
-       //     && col.gameObject.tag != "Damaging")            
-       // {
-       //     print("Trigger Exit");
-       //     movement2D.SetGrounded(false);
-       // }
+
         Grounded();
     }
 
@@ -139,12 +143,12 @@ public class PlayerMovement2D : MonoBehaviour {
             if(dist > 1f)
             {
                 movement2D.SetGrounded(false);
-                print("Set grounded false");
+                //print("Set grounded false");
             }
             else
             {
                 movement2D.SetGrounded(true);
-                print("Set grounded true");
+                //print("Set grounded true");
             }
         }
     }
