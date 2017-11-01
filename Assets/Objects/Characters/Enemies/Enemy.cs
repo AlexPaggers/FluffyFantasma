@@ -56,8 +56,8 @@ public class Enemy : MonoBehaviour {
 
 	private void DeathAudio()
 	{
-		//	if (!source.isPlaying)
-		//		source.Play();
+			if (!source.isPlaying)
+				source.Play();
 
 		//re-add when audio is found
 	}

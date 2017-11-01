@@ -7,6 +7,10 @@ public class PlatformGenerator : MonoBehaviour
     public GameObject mainCam;
     public GameObject prevRoom;
     public GameObject platformPrefab;
+    public GameObject bossPrefab;
+    public GameObject currentBoss;
+    public GameObject trapDoor;
+    public WavesManager wavesManager;
     public float randRoomX = 0f;
     public List<GameObject> roomOnePlatforms = new List<GameObject>();
     public List<GameObject> roomTwoPlatforms = new List<GameObject>();
@@ -40,6 +44,42 @@ public class PlatformGenerator : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            bossMode = true;
+        }
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            bossMode = false;
+        }
+
+
+        if (wavesManager.currentWave % 5 == 0 && wavesManager.currentWave > 0)
+        {
+           // bossMode = true;
+        }
+        else
+        {
+           // bossMode = false;
+        }
+
+        if(bossMode)
+        {
+            if (currentBoss != null)
+            {
+                if (!currentBoss.GetComponentInChildren<gorillaBoss>().dead)
+                {
+                    trapDoor.GetComponent<SpriteRenderer>().sprite = GetComponent<TrapDoor>().doorClosed;
+                }
+                else
+                {
+                    bossMode = false;
+                    trapDoor.GetComponent<SpriteRenderer>().sprite = GetComponent<TrapDoor>().doorOpen;
+                }
+            }
+        }
+
+
         if (TrapDoor.TrapDoorHit)
         {
             SetPreviousRoom();
@@ -57,7 +97,7 @@ public class PlatformGenerator : MonoBehaviour
         }
         else
         {
-            // Boss Mode
+            AddBossMode();
         }
     }
 
@@ -78,7 +118,6 @@ public class PlatformGenerator : MonoBehaviour
                 Destroy(platform);
             }
             roomTwoPlatforms.Clear();
-
         }
     }
 
@@ -167,5 +206,21 @@ public class PlatformGenerator : MonoBehaviour
             yield return false;
         }
         yield return true;
+    }
+
+
+
+    private void AddBossMode()
+    {
+        currentBoss = Instantiate(bossPrefab, prevRoom.transform.position, Quaternion.identity);
+
+        if (prevRoom == sideScroll.roomOne)
+        {
+            roomOnePlatforms.Add(currentBoss);
+        }
+        else
+        {
+            roomTwoPlatforms.Add(currentBoss);
+        }
     }
 }
