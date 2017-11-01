@@ -133,6 +133,7 @@ public class PowerUpsManager : MonoBehaviour {
                     ProjectileManager2D.actFireRate();
                     GetComponent<SpriteRenderer>().enabled = false;
                     GetComponent<CircleCollider2D>().enabled = false;
+                    GetComponent<BoxCollider2D>().enabled = false;
                     GetComponent<ParticleSystem>().enableEmission = false;
                     speeding = true;
                     timeToStop = Time.time + (blinkTime * 2);
@@ -147,6 +148,7 @@ public class PowerUpsManager : MonoBehaviour {
                     ProjectileManager2D.actTripleShoot();
                     GetComponent<SpriteRenderer>().enabled = false;
                     GetComponent<CircleCollider2D>().enabled = false;
+                    GetComponent<BoxCollider2D>().enabled = false;
                     GetComponent<ParticleSystem>().enableEmission = false;
                     tripling = true;
                     timeToStop = Time.time + (blinkTime * 2);
@@ -156,6 +158,7 @@ public class PowerUpsManager : MonoBehaviour {
                     Projectile2D.followOn();
                     GetComponent<SpriteRenderer>().enabled = false;
                     GetComponent<CircleCollider2D>().enabled = false;
+                    GetComponent<BoxCollider2D>().enabled = false;
                     GetComponent<ParticleSystem>().enableEmission = false;
                     following = true;
                     timeToStop = Time.time + blinkTime;

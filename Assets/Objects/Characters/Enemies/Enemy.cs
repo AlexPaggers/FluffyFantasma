@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
+    int hits = 5;
 
 	private AudioSource source { get { return this.GetComponent<AudioSource>(); } }
 
@@ -24,10 +25,13 @@ public class Enemy : MonoBehaviour {
 	{
         if (col.gameObject.tag == "Bullet")
 		{
-            SpawnDrops();
-			DeathAudio();
-			StartCoroutine(DestroyOnceEffectsHaveFinished());
-
+            hits--;
+            if (hits == 0)
+            {
+                SpawnDrops();
+                DeathAudio();
+                StartCoroutine(DestroyOnceEffectsHaveFinished());
+            }
 		}
 	}
 
