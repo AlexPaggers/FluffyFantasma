@@ -143,6 +143,7 @@ public class PlayerMovement2D : MonoBehaviour {
             else
             {
                 movement2D.SetGrounded(true);
+                return;
             }
         }
     }
