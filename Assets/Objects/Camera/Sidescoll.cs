@@ -11,8 +11,8 @@ public class Sidescoll : MonoBehaviour
 	public bool bossRoom = false;
 
 
-    private GameObject currentRoom;
-    private GameObject nextRoom;
+    public GameObject currentRoom;
+    public GameObject nextRoom;
     public GameObject roomOne;
     public GameObject roomTwo;
 

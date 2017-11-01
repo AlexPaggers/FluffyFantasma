@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum FireAngle2D
 {
+    DOWN,
+    DDD_LEFT,
     DD_LEFT,
     D_LEFT,
     LEFT,
@@ -15,7 +17,8 @@ public enum FireAngle2D
     U_RIGHT,
     RIGHT,
     D_RIGHT,
-    DD_RIGHT
+    DD_RIGHT,
+    DDD_RIGHT
 }
 public class GunController2D : MonoBehaviour
 {
@@ -34,6 +37,20 @@ public class GunController2D : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, 90f);
             fireAngle = FireAngle2D.UP;
             //Debug.Log("UP");
+        }
+
+        if (Input.GetAxis("Vertical") == -1) //Aiming UP
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 270f);
+            fireAngle = FireAngle2D.DOWN;
+            //Debug.Log("UP");
+        }
+
+        else if ((Input.GetAxis("Vertical") < -0.5 && Input.GetAxis("Vertical") > -1 ) && Input.GetAxis("Horizontal") > 0) //Aiming RIGHT
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, -67.5f);
+            fireAngle = FireAngle2D.DDD_RIGHT;
+            //Debug.Log("RIGHT");
         }
 
         else if ((Input.GetAxis("Vertical") < -0.25 && Input.GetAxis("Vertical") >= -0.50) && Input.GetAxis("Horizontal") > 0) //Aiming RIGHT
@@ -76,6 +93,13 @@ public class GunController2D : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, 67.5f);
             fireAngle = FireAngle2D.UUU_RIGHT;
             //Debug.Log("U_RIGHT");
+        }
+
+        else if ((Input.GetAxis("Vertical") < -0.5 && Input.GetAxis("Vertical") > -1) && Input.GetAxis("Horizontal") < 0) //Aiming RIGHT
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 247.5f);
+            fireAngle = FireAngle2D.DDD_LEFT;
+            //Debug.Log("RIGHT");
         }
 
         else if ((Input.GetAxis("Vertical") < -0.25 && Input.GetAxis("Vertical") >= -0.50) && Input.GetAxis("Horizontal") < 0) //Aiming RIGHT

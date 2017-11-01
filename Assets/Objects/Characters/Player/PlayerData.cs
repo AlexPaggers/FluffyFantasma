@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerData : MonoBehaviour
 {
     static int health;
     static int maxHealth;
-    static int lives;
+    public static int lives;
     static int score;
     static float ghostMeter;
     static float timer;
@@ -41,7 +42,7 @@ public class PlayerData : MonoBehaviour
                 Debug.Log("No health left! Life lost!");
                 if (lives < 0)
                 {
-                    //GAMEOVER LOGIC
+                    SceneManager.LoadScene(SceneManager.GetSceneByName("GameOver").name);
                     Debug.Log("No lives left! Game over!");
                 }
             }

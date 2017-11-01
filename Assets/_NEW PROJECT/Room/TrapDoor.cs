@@ -6,11 +6,14 @@ using UnityEngine;
 
 public class TrapDoor : MonoBehaviour
 {
+    public Sprite doorOpen;
+    public Sprite doorClosed;
     public float trapDoorSpeed = 500f;
     public float timer = 0f;
-    public float MAX_TIME = 5f;
+    public float MAX_TIME = 10f;
     public bool doorLocked = false;
     public bool doorActivated = false;
+    public static bool readyToLoad = false;
 
 
 
@@ -41,13 +44,18 @@ public class TrapDoor : MonoBehaviour
             if (timer <= MAX_TIME)
             {
                 timer += Time.deltaTime;
-                doorLocked = true;
+				doorLocked = true;
+				GetComponent<ParticleSystem>().enableEmission = false;
+                GetComponent<SpriteRenderer>().sprite = doorClosed;
             }
             else
             {
                 GetComponent<BoxCollider2D>().isTrigger = true;
+                GetComponent<SpriteRenderer>().sprite = doorOpen;
+                readyToLoad = false;
                 doorActivated = false;
-                doorLocked = false;
+				doorLocked = false;
+				GetComponent<ParticleSystem>().enableEmission = true;
                 timer = 0f;
             }
         }
