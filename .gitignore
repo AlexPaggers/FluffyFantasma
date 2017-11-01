@@ -33,3 +33,6 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+Assets/_Scenes/Menu.meta
+Assets/Scenes/Menu/New/Highscores.txt
+ 
