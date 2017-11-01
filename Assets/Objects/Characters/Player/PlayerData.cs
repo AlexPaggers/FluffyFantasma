@@ -126,7 +126,7 @@ public class PlayerData : MonoBehaviour
 
     public static void addGhostMeter()
     {
-        ghostMeter += 0.1f;
+        ghostMeter += 0.01f;
     }
 
     public static void subGhostMeter()

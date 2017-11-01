@@ -19,11 +19,11 @@ public class Enemy : MonoBehaviour {
 	}
 
 
-	void OnCollisionEnter2D(Collision2D col)
+	void OnTriggerEnter2D(Collider2D col)
 	{
-		if(col.gameObject.tag == "Bullet")
+        if (col.gameObject.tag == "Bullet")
 		{
-			SpawnDrops();
+            SpawnDrops();
 			DeathAudio();
 			StartCoroutine(DestroyOnceEffectsHaveFinished());
 
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour {
 		int total = Random.Range (2, 12);
 		for (int i = 0; i < total; i++) 
 		{
-			//Instantiate (coin, this.transform, Quaternion.identity);
+			Instantiate (coin, this.transform.position, Quaternion.identity);
 
 		}
 
