@@ -27,7 +27,7 @@ public class ProjectileManager2D : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         fireType = FireType2D.SINGLE;
-        fireRate = 4;
+        fireRate = 10;
         firePoint = transform.Find("FirePoint");
         if (firePoint == null)
         {
@@ -95,23 +95,23 @@ public class ProjectileManager2D : MonoBehaviour {
             Effect();
         }
 
-        else if (myAngle == FireAngle2D.UP_RIGHT) //Aiming UP RIGHT
+        else if (myAngle == FireAngle2D.DD_RIGHT) //Aiming UP RIGHT
         {
-            setRotation(50f);
+            setRotation(-50f);
             Effect();
-            setRotation(40f);
+            setRotation(-40f);
             Effect();
-            setRotation(45f);
+            setRotation(-45f);
             Effect();
         }
 
-        else if (myAngle == FireAngle2D.UP_LEFT) //Aimin UP LEFT
+        else if (myAngle == FireAngle2D.D_RIGHT) //Aiming UP RIGHT
         {
-            setRotation(140f);
+            setRotation(-17.5f);
             Effect();
-            setRotation(130f);
+            setRotation(-27.5f);
             Effect();
-            setRotation(135f);
+            setRotation(-22.5f);
             Effect();
         }
 
@@ -125,6 +125,56 @@ public class ProjectileManager2D : MonoBehaviour {
             Effect();
         }
 
+        else if (myAngle == FireAngle2D.U_RIGHT) //Aiming UP RIGHT
+        {
+            setRotation(17.5f);
+            Effect();
+            setRotation(27.5f);
+            Effect();
+            setRotation(22.5f);
+            Effect();
+        }
+
+        else if (myAngle == FireAngle2D.UU_RIGHT) //Aiming UP RIGHT
+        {
+            setRotation(50f);
+            Effect();
+            setRotation(40f);
+            Effect();
+            setRotation(45f);
+            Effect();
+        }
+
+        else if (myAngle == FireAngle2D.UUU_RIGHT) //Aiming UP RIGHT
+        {
+            setRotation(72.5f);
+            Effect();
+            setRotation(62.5f);
+            Effect();
+            setRotation(67.5f);
+            Effect();
+        }
+
+        else if (myAngle == FireAngle2D.DD_LEFT) //Aiming LEFT
+        {
+            setRotation(230f);
+            Effect();
+            setRotation(220f);
+            Effect();
+            setRotation(225f);
+            Effect();
+        }
+
+        else if (myAngle == FireAngle2D.D_LEFT) //Aiming LEFT
+        {
+            setRotation(207.5f);
+            Effect();
+            setRotation(197.5f);
+            Effect();
+            setRotation(202.5f);
+            Effect();
+        }
+
         else if (myAngle == FireAngle2D.LEFT) //Aiming LEFT
         {
             setRotation(185f);
@@ -134,6 +184,37 @@ public class ProjectileManager2D : MonoBehaviour {
             setRotation(180f);
             Effect();
         }
+
+        else if (myAngle == FireAngle2D.U_LEFT) //Aimin UP LEFT
+        {
+            setRotation(162.5f);
+            Effect();
+            setRotation(152.5f);
+            Effect();
+            setRotation(157.5f);
+            Effect();
+        }
+
+        else if (myAngle == FireAngle2D.UU_LEFT) //Aimin UP LEFT
+        {
+            setRotation(140f);
+            Effect();
+            setRotation(130f);
+            Effect();
+            setRotation(135f);
+            Effect();
+        }
+
+        else if (myAngle == FireAngle2D.UUU_LEFT) //Aimin UP LEFT
+        {
+            setRotation(117.5f);
+            Effect();
+            setRotation(107.5f);
+            Effect();
+            setRotation(112.5f);
+            Effect();
+        }
+
         else
         {
             setRotation(lastRot + 5f);
