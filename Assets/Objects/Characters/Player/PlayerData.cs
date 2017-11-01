@@ -6,7 +6,7 @@ public class PlayerData : MonoBehaviour
 {
     static int health;
     static int maxHealth;
-    static int lives;
+    public static int lives;
     static int score;
     static float ghostMeter;
     static float timer;
