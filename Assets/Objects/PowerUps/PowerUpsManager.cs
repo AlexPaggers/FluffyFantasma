@@ -127,6 +127,7 @@ public class PowerUpsManager : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
+            PlayerData.addScore(250);
             switch (pUpType)
             {
                 case PUTypes.SPEED_INC:

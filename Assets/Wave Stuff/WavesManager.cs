@@ -26,7 +26,9 @@ public class WavesManager : MonoBehaviour {
         if(enemiesSpawned < totalEnemiesThisWave) //if enemies spawned is LESS THAN total enemies this round
         {
             GameObject enemyToSpawn = enemies[Random.Range(0, 2)];
-            GameObject locationToSpawn = spawnPoints[Random.Range(0, 5)];
+            var randPick = Random.Range(0, 4);
+            print("random spawn point is " + randPick);
+            GameObject locationToSpawn = spawnPoints[randPick];
             if(Time.time > spawnTempTimer)
             {
                 spawnTempTimer = Time.time + Random.Range(minTimeBetweenSpawn, maxTimeBetweenSpawn);

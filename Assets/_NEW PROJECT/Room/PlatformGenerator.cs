@@ -16,6 +16,7 @@ public class PlatformGenerator : MonoBehaviour
     public List<GameObject> roomTwoPlatforms = new List<GameObject>();
 
     public bool bossMode = false;
+    public bool generateBoss = false;
 
 
     private Sidescoll sideScroll;
@@ -47,6 +48,7 @@ public class PlatformGenerator : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.L))
         {
             bossMode = true;
+            generateBoss = true;
         }
         if(Input.GetKeyDown(KeyCode.U))
         {
@@ -97,7 +99,11 @@ public class PlatformGenerator : MonoBehaviour
         }
         else
         {
-            AddBossMode();
+            if (generateBoss)
+            {
+                AddBossMode();
+                generateBoss = false;
+            }
         }
     }
 

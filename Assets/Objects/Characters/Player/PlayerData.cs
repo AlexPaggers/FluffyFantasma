@@ -53,6 +53,10 @@ public class PlayerData : MonoBehaviour
         }
     }
 
+    public static void addScore(int _score)
+    {
+        score += _score;
+    }
     public static int Health
     {
         get
