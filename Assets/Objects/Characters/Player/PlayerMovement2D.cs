@@ -91,7 +91,7 @@ public class PlayerMovement2D : MonoBehaviour {
             {
                 movement2D.SetGameType(CharacterMovement2D.GameType2D.SIDE_SCROLLER);
             }
-        }
+        }Grounded();
     }
 
     void OnTriggerStay2D(Collider2D col)
@@ -103,7 +103,7 @@ public class PlayerMovement2D : MonoBehaviour {
           //  print("Object: " + col.gameObject.name);
             movement2D.SetGrounded(true);
         }
-        Grounded();
+        
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -116,7 +116,7 @@ public class PlayerMovement2D : MonoBehaviour {
             movement2D.SetGrounded(false);
         }
 
-        Grounded();
+       // Grounded();
     }
 
     void OnCollisionEnter2D(Collision2D col)
