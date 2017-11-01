@@ -25,6 +25,7 @@ public class PowerUpsManager : MonoBehaviour {
 
     private bool following = false;
     private bool tripling = false;
+    private bool speeding = false;
     // Use this for initialization
     void Start () { 
 
@@ -81,7 +82,6 @@ public class PowerUpsManager : MonoBehaviour {
             if (Time.time >= timeToFollow)
             {
                 timeToFollow = Time.time + blinkSpeed;
-                Debug.Log("GOING!!");
             }
 
             if (Time.time >= timeToStop)
@@ -89,9 +89,7 @@ public class PowerUpsManager : MonoBehaviour {
                 Projectile2D.followOff();
                 following = false;
                 Destroy(gameObject);
-                Debug.Log("STOPPING");
             }
-            Debug.Log("FOLLOWING");
         }
 
         if (tripling == true)
@@ -99,7 +97,6 @@ public class PowerUpsManager : MonoBehaviour {
             if (Time.time >= timeToFollow)
             {
                 timeToFollow = Time.time + blinkSpeed;
-                Debug.Log("GOING!!");
             }
 
             if (Time.time >= timeToStop)
@@ -107,9 +104,22 @@ public class PowerUpsManager : MonoBehaviour {
                 ProjectileManager2D.disTripleShoot();
                 tripling = false;
                 Destroy(gameObject);
-                Debug.Log("STOPPING");
             }
-            Debug.Log("FOLLOWING");
+        }
+
+        if (speeding == true)
+        {
+            if (Time.time >= timeToFollow)
+            {
+                timeToFollow = Time.time + blinkSpeed;
+            }
+
+            if (Time.time >= timeToStop)
+            {
+                ProjectileManager2D.disFireRate();
+                speeding = false;
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -120,8 +130,12 @@ public class PowerUpsManager : MonoBehaviour {
             switch (pUpType)
             {
                 case PUTypes.SPEED_INC:
-                    ProjectileManager2D.incFireRate();
-                    Destroy(gameObject);
+                    ProjectileManager2D.actFireRate();
+                    GetComponent<SpriteRenderer>().enabled = false;
+                    GetComponent<CircleCollider2D>().enabled = false;
+                    GetComponent<ParticleSystem>().enableEmission = false;
+                    speeding = true;
+                    timeToStop = Time.time + (blinkTime * 2);
                     //Add extra speed
                     break;
 				case PUTypes.ONE_UP:
