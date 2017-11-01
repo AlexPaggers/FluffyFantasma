@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 
-	void OnCollisionEnter2D(Collision2D col)
+	void OnTriggerEnter2D(Collider2D col)
 	{
 		if(col.gameObject.tag == "Bullet")
 		{
@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour {
 		int total = Random.Range (2, 12);
 		for (int i = 0; i < total; i++) 
 		{
+			gameObject.GetComponent<Spawner>().SpawnObject();
 			//Instantiate (coin, this.transform, Quaternion.identity);
 
 		}
