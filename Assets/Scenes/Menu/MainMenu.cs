@@ -33,7 +33,7 @@ public class MainMenu : MonoBehaviour {
 
     string readHighscore()
     {
-        string path = "Assets/Highscores.txt";
+        string path = "Assets/Scenes/Menu/New/Highscores.txt";
 
         //Re-import the file to update the reference in the editor
         AssetDatabase.ImportAsset(path);
