@@ -30,7 +30,6 @@ public class Sidescoll : MonoBehaviour {
     // Update is called once per frame
     void LateUpdate () 
 	{
-
 		//set whether in a boss room or not based on gamedata :)
 
 		if (!bossRoom)

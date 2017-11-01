@@ -36,3 +36,4 @@ sysinfo.txt
 *.meta
 *.meta
 Assets/Audio/GhostHurt.mp3.meta
+Assets/Objects/Characters/Player/Player.prefab
