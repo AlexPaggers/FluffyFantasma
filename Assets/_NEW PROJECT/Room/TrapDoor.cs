@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class TrapDoor : MonoBehaviour
 {
+    public Sprite doorOpen;
+    public Sprite doorClosed;
     public float trapDoorSpeed = 500f;
     public float timer = 0f;
     public float MAX_TIME = 10f;
@@ -47,6 +49,7 @@ public class TrapDoor : MonoBehaviour
             else
             {
                 GetComponent<BoxCollider2D>().isTrigger = true;
+                GetComponent<SpriteRenderer>().sprite = doorOpen;
                 readyToLoad = false;
                 doorActivated = false;
                 doorLocked = false;
@@ -60,6 +63,7 @@ public class TrapDoor : MonoBehaviour
     {
         if (doorLocked)
         {
+            GetComponent<SpriteRenderer>().sprite = doorClosed;
             GetComponent<BoxCollider2D>().isTrigger = false;
             return;
         }
