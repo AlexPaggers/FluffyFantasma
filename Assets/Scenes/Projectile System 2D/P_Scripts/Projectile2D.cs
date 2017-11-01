@@ -12,7 +12,7 @@ public class Projectile2D : MonoBehaviour {
     public float moveDist = 10; //objects can move to the player
     private Transform current;
 
-    public float bulletSpeed = 2f;
+    public float bulletSpeed;
 
     void Awake()
     {
@@ -32,12 +32,12 @@ public class Projectile2D : MonoBehaviour {
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             current.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            transform.Translate((Vector3.right * Time.deltaTime * bulletSpeed) / 3);
+            transform.Translate((Vector3.right * Time.deltaTime * bulletSpeed));
             //current.position += current.right * moveSpeed * Time.deltaTime;
         }
         else
         {
-            transform.Translate((Vector3.right * Time.deltaTime * bulletSpeed) / 3);
+            transform.Translate((Vector3.right * Time.deltaTime * bulletSpeed));
             Destroy(gameObject, 1);
         }
         
