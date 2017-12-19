@@ -5,13 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class PlayerData : MonoBehaviour
 {
-    static int health;
-    static int maxHealth;
     public static int lives;
-    static int score;
     static float ghostMeter;
     static float timer;
     static bool ghostForm;
+    static int health;
+    static int maxHealth;
+    static int score;
+
+
 
     void Start()
     {
@@ -22,6 +24,9 @@ public class PlayerData : MonoBehaviour
         score = 0;
         timer = 0;
         ghostMeter = 0;
+
+        if(!PlayerPrefs.HasKey("HighScore")) 
+            PlayerPrefs.SetInt("HighScore", 0);
     }
 
     void Update()
@@ -147,5 +152,19 @@ public class PlayerData : MonoBehaviour
     public static void setGhostMeter(float _ghostMeter)
     {
         ghostMeter = _ghostMeter;
+    }
+
+    public static int HighScore
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("HighScore");
+        }
+
+        set
+        {
+            PlayerPrefs.SetInt("HighScore", value);
+            PlayerPrefs.Save();
+        }
     }
 }

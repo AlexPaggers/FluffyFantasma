@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
@@ -33,14 +32,15 @@ public class _MainMenu : MonoBehaviour {
 
     string readHighscore()
     {
-        string path = "Assets/_Scenes/Menu/Highscores.txt";
+        //string path = "Assets/_Scenes/Menu/Highscores.txt";
+        
 
         //Re-import the file to update the reference in the editor
-        AssetDatabase.ImportAsset(path);
-
-        //Read from the file
-        StreamReader reader = new StreamReader(path, true);
-        return reader.ReadToEnd();
+       // AssetDatabase.ImportAsset(path);
+       //
+       // //Read from the file
+       // StreamReader reader = new StreamReader(path, true);
+        return "";//reader.ReadToEnd();
     }
 
 	// Update is called once per frame

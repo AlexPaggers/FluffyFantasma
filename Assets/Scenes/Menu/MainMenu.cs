@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
@@ -25,24 +24,11 @@ public class MainMenu : MonoBehaviour {
 	void Start () {
         text.text = "Insert coin to start";
         shadow.text = "Insert coin to start";
-        TEST.text = "Highscore: " + readHighscore();
-        TESTSHADOW.text = "Highscore: " + readHighscore();
+        TEST.text = "Highscore: " + PlayerData.HighScore;
+        TESTSHADOW.text = "Highscore: " + PlayerData.HighScore;
         hiding = true;
 	}
 	
-
-    string readHighscore()
-    {
-        string path = "Assets/Scenes/Menu/New/Highscores.txt";
-
-        //Re-import the file to update the reference in the editor
-        AssetDatabase.ImportAsset(path);
-
-        //Read from the file
-        StreamReader reader = new StreamReader(path, true);
-        return reader.ReadToEnd();
-    }
-
 	// Update is called once per frame
 	void Update ()
     {

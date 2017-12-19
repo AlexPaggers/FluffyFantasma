@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
@@ -35,26 +34,11 @@ public class GameOver : MonoBehaviour
 
     string readHighscore()
     {
-        string path = "Assets/Scenes/Menu/New/Highscores.txt";
-
-        //Re-import the file to update the reference in the editor
-        AssetDatabase.ImportAsset(path);
-
-        //Read from the file
-        StreamReader reader = new StreamReader(path, true);
-        int HighScore = int.Parse(reader.ReadToEnd());
-        reader.Close();
-        if (PlayerData.Score > HighScore)
+        if (PlayerData.Score > PlayerData.HighScore)
         {
-            File.WriteAllText("Assets/Scenes/Menu/New/Highscores.txt", "");
-            StreamWriter writer = new StreamWriter(path, true);
-            writer.WriteLine(PlayerData.Score.ToString());
-            writer.Close();
+            PlayerData.HighScore = PlayerData.Score;
         }
-        reader = new StreamReader(path, true);
-        string s = reader.ReadToEnd();
-        reader.Close();
-        return s;
+        return PlayerData.HighScore.ToString();
     }
 
     // Update is called once per frame
